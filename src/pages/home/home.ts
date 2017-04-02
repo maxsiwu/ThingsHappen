@@ -51,7 +51,7 @@ export class HomePage {
 			if (typeof (this._oneEvent.intervalValue) != "undefined" &&
 				this._oneEvent.isrepeat == true) {
 				if (this._oneEvent.intervalType == "hours") {
-					if (this._oneEvent.isComplete) {
+					if (this._oneEvent.repeatWhenComplete) {
 						this._oneEvent.eventDateTime =
 							new Date(now.getTime() +
 								this._oneEvent.intervalValue * 60 * 60 * 1000)

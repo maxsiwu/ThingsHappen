@@ -12,12 +12,13 @@
         <!--<ion-avatar item-left>
           <img src="images/delete-purple.png">
         </ion-avatar>-->
-
         <h1>{{_event.title}}</h1>
         <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
-        <ion-icon  *ngIf="_event.isStarred == true" name="md-flower" item-right></ion-icon>
         <span *ngIf="_event.eventDateTime" item-right style="text-align:right;">
-          <h1>{{getTimeLeft(_event.eventDateTime).value}}</h1>
+          <h1>
+            <ion-icon  *ngIf="_event.isStarred == true" name="md-flower" item-right></ion-icon>
+            {{getTimeLeft(_event.eventDateTime).value}}
+          </h1>
           <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
         </span>
       </button>

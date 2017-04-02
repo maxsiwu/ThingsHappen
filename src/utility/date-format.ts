@@ -56,7 +56,7 @@ export class DateFormat{
             output.value = Math.floor(minutes)
             output.unit = " Mins"
           }else{
-            output.value = Math.floor(hours)
+            output.value = Math.floor( hours * 10 ) / 10
             output.unit = " Hours"
           }
         }else{

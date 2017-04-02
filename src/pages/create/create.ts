@@ -23,6 +23,7 @@ export class CreatePage {
               public storage:Storage,
               public dateFormat:DateFormat) {
     //this.storage.clear();
+    this.intervalType = "hours";
   }
 
   updateEvent(){
@@ -39,6 +40,8 @@ export class CreatePage {
           eventModel.intervalValue = this.intervalValue;
           eventModel.intervalType = this.intervalType;
           eventModel.repeatWhenComplete = this.repeatWhenComplete;
+
+          console.log("somethings")
 
           if(!allevents){
               allevents = []

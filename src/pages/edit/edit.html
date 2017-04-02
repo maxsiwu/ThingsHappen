@@ -28,21 +28,18 @@
     <ion-label fixed>Repeat</ion-label>
     <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
   </ion-item>
-  <div *ngIf="isrepeat == true">
+    <div *ngIf="isrepeat == true">
     <ion-item>
-      <ion-label fixed>Every</ion-label>
-      <ion-input [(ngModel)]="intervalValue" type="number" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed>Interval</ion-label>
+      <ion-label fixed>Repeat every</ion-label>
+      <ion-input [(ngModel)]="intervalValue" type="number"></ion-input>
       <ion-select [(ngModel)]="intervalType" item-right>
-        <ion-option value="min">Minute</ion-option>
-        <ion-option value="hour">Hour</ion-option>
+        <ion-option value="hours">Hours</ion-option>
+        <ion-option value="minutes">Minutes</ion-option>
       </ion-select>
     </ion-item>
-      <ion-item>
-      <ion-label fixed>Repeat When Complete</ion-label>
-      <ion-toggle [(ngModel)]="repeatWhenComplete" checked="false"></ion-toggle>
+    <ion-item>
+      <ion-label fixed>Reset when complete</ion-label>
+      <ion-toggle [(ngModel)]="repeatWhenComplete" checked="false" item-bottom></ion-toggle>
     </ion-item>
   </div>
 </ion-list>

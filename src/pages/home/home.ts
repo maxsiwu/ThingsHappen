@@ -20,6 +20,7 @@ export class HomePage {
   colorDiff: number
   colorCode: string
   currentLength: number
+  colorIndex: Array<number>
 	constructor(public navCtrl: NavController,
               public storage: Storage,
               public sortBy: SortPipe,
@@ -38,9 +39,11 @@ export class HomePage {
 			if (allevents != null) {
 				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
         this.currentLength = 0;
+        this.colorIndex = Array(this._allevents.length)
         for(var i = 0; i < this._allevents.length; i++){
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
-            this.currentLength++
+            this.colorIndex[i] = this.currentLength;
+            this.currentLength++;
             console.log("?",this.currentLength)
           }
         }
@@ -50,8 +53,8 @@ export class HomePage {
 	}
 
   showBgColor(i){
-    console.log("??",this.colorDiff)
-    return this.changeColor.lightenDarkenColor(this.colorCode, i*this.colorDiff)
+    console.log("??",i,this.colorIndex)
+    return this.changeColor.lightenDarkenColor(this.colorCode, this.colorIndex[i]*this.colorDiff)
   }
 
 	editEvent = (index): void => {

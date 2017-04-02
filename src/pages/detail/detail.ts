@@ -28,6 +28,21 @@ export class DetailPage {
     this.navCtrl.push(EditPage, { event: this.event, index:this.index });
   }
 
+  watchEvent = ():void => {
+    this.storage.get('allevents').then((allevents) => {
+      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
+      this.event = this._allevents[this.index]
+      if(this.event.isStarred != true){
+        this.event.isStarred = true
+      }else{
+        this.event.isStarred = false
+      }
+      
+      allevents[this.index] = this.event
+      this.storage.set('allevents',allevents);
+    })
+  }
+
   deleteEvent = ():void => {
       this.storage.get('allevents').then((allevents) => {
           this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime")

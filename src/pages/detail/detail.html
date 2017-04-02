@@ -21,8 +21,9 @@
         Edit
       </button>
 
-      <button ion-button color="danger">
-        Watch
+      <button ion-button (click)="watchEvent()" color="danger">
+        <span *ngIf="event.isStarred == true">Unwatch</span>
+        <span *ngIf="event.isStarred != true">Watch</span>
       </button>
       <button ion-button color="dark" (click)="deleteEvent()" >
         Delete

@@ -22,6 +22,7 @@ export class EditPage {
   intervalType:string;
   repeatWhenComplete:boolean;
   isComplete:boolean;
+  isStarred:boolean;
 
   constructor(params: NavParams, public navCtrl: NavController, public storage:Storage, public dateFormat:DateFormat, public sortBy:SortPipe) {
       this.event = params.data.event;
@@ -38,6 +39,7 @@ export class EditPage {
       this.intervalType = this.event.intervalType
       this.repeatWhenComplete = this.event.repeatWhenComplete
       this.isComplete = this.event.isComplete
+      this.isStarred = this.event.isStarred
   }
 
   updateEvent(){
@@ -55,6 +57,7 @@ export class EditPage {
           changedEvent.intervalType = this.intervalType;
           changedEvent.repeatWhenComplete = this.repeatWhenComplete;
           changedEvent.isComplete = this.isComplete;
+          changedEvent.isStarred = this.isStarred;
 
           this.storage.get('allevents').then((allevents) => {
               this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")

@@ -4,7 +4,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { CreatePage } from '../pages/create/create';
-import { ContactPage } from '../pages/contact/contact';
+import { CompletedListPage } from '../pages/completed-list/completed-list';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
   declarations: [
     MyApp,
     CreatePage,
-    ContactPage,
+    CompletedListPage,
     HomePage,
     TabsPage,
     DetailPage,
@@ -34,7 +34,7 @@ import { Storage } from '@ionic/storage';
   entryComponents: [
     MyApp,
     CreatePage,
-    ContactPage,
+    CompletedListPage,
     HomePage,
     TabsPage,
     DetailPage,

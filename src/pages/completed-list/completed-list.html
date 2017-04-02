@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Things Happened
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+      <div *ngFor="let _event of _allevents; let i = index">
+      <ion-item-sliding  *ngIf="_event.isComplete == true">
+        <button ion-item (click)="goToDetails(i)">
+          <h1>{{_event.title}}</h1>
+          <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
+          <span *ngIf="_event.eventDateTime" item-right style="text-align:center;">
+            <h1>{{getTimeLeft(_event.eventDateTime).value}}</h1>
+            <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
+          </span>
+        </button>
+        <ion-item-options side="left">
+          <button ion-button (click)="bringBackEvent(i)" color="secondary">
+            <ion-icon name="edit"></ion-icon>
+            Not Completed
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button (click)="deleteEvent(i)" color="primary">
+            <ion-icon name="delete"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+      </div>
+    </ion-list>
+</ion-content>

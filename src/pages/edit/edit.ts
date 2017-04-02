@@ -21,6 +21,7 @@ export class EditPage {
   intervalValue:number;
   intervalType:string;
   repeatWhenComplete:boolean;
+  isComplete:boolean;
 
   constructor(params: NavParams, public navCtrl: NavController, public storage:Storage, public dateFormat:DateFormat, public sortBy:SortPipe) {
       this.event = params.data.event;
@@ -36,13 +37,14 @@ export class EditPage {
       this.intervalValue = this.event.intervalValue
       this.intervalType = this.event.intervalType
       this.repeatWhenComplete = this.event.repeatWhenComplete
+      this.isComplete = this.event.isComplete
   }
 
   updateEvent(){
       //this.validation();
-      this.addToTable();
+      this.saveEditedEvent();
   }
-  addToTable(){
+  saveEditedEvent(){
       this.storage.get('allevents').then((allevents)=>{
           var changedEvent = new Event;
           changedEvent.title = this.title;
@@ -52,15 +54,15 @@ export class EditPage {
           changedEvent.intervalValue = this.intervalValue;
           changedEvent.intervalType = this.intervalType;
           changedEvent.repeatWhenComplete = this.repeatWhenComplete;
+          changedEvent.isComplete = this.isComplete;
 
           this.storage.get('allevents').then((allevents) => {
               this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
               allevents[this.index] = changedEvent
-
               this.storage.set('allevents',allevents);
-
           })
       });
+      this.navCtrl.pop()
   }
 
   validation(){
@@ -73,7 +75,9 @@ export class EditPage {
       console.log(this.date)
       if (typeof(this.date) == 'undefined'){
         var now = new Date()
-        this.date = '' + now.getFullYear() + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1) + '-' + this.dateFormat.forceTwoDigits(now.getDate());
+        this.date = '' + now.getFullYear()
+                    + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
+                    + '-' + this.dateFormat.forceTwoDigits(now.getDate());
         console.log('day is empty'+this.date);
       }
         return state;

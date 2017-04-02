@@ -1,20 +1,23 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Will Happen</ion-title>
+    <ion-title>Some Things</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let _event of _allevents; let i = index" >
+    <div *ngFor="let _event of _allevents; let i = index">
+    <ion-item-sliding  *ngIf="_event.isComplete != true">
       <button ion-item (click)="goToDetails(i)">
         <!--<ion-avatar item-left>
           <img src="images/delete-purple.png">
         </ion-avatar>-->
         <h1>{{_event.title}}</h1>
         <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
-        <h1 *ngIf="_event.eventDateTime" item-right>{{getTimeLeft(_event.eventDateTime).value}}</h1>
-        <h3 *ngIf="_event.eventDateTime" item-right>{{getTimeLeft(_event.eventDateTime).unit}}</h3>
+        <span *ngIf="_event.eventDateTime" item-right style="text-align:center;">
+          <h1>{{getTimeLeft(_event.eventDateTime).value}}</h1>
+          <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
+        </span>
       </button>
       <ion-item-options side="left">
         <button ion-button (click)="editEvent(i)" color="secondary">
@@ -29,5 +32,6 @@
         </button>
       </ion-item-options>
     </ion-item-sliding>
+    </div>
   </ion-list>
 </ion-content>

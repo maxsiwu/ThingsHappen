@@ -41,7 +41,7 @@ export class DateFormat{
         if (Math.abs(days) < 1){
           if(Math.abs(hours)<1){
             output.value = -Math.floor(minutes)
-            output.unit = " Minutes Ago"
+            output.unit = " Mins Ago"
           }else{
             output.value = -Math.floor(hours)
             output.unit = " Hours Ago"
@@ -54,14 +54,14 @@ export class DateFormat{
         if (days < 1){
           if(hours<1){
             output.value = Math.floor(minutes)
-            output.unit = " Minutes Left"
+            output.unit = " Mins"
           }else{
             output.value = Math.floor(hours)
-            output.unit = " Hours Left"
+            output.unit = " Hours"
           }
         }else{
           output.value = Math.ceil(days)
-          output.unit = " Days Left"
+          output.unit = " Days"
         }
       }
       return output

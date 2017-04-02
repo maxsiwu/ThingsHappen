@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 @Component({
   selector: 'page-create',
   templateUrl: 'create.html',
-  providers:[DateFormat]
+  providers:[DateFormat, HomePage]
 })
 export class CreatePage {
   title:string;
@@ -19,7 +19,9 @@ export class CreatePage {
   intervalType:string;
   repeatWhenComplete:boolean;
 
-  constructor(public navCtrl: NavController,public storage:Storage,public dateFormat:DateFormat) {
+  constructor(public navCtrl: NavController,
+              public storage:Storage,
+              public dateFormat:DateFormat) {
     //this.storage.clear();
   }
 
@@ -40,11 +42,12 @@ export class CreatePage {
 
           if(!allevents){
               allevents = []
-            }
+          }
           allevents.push(eventModel);
-          this.storage.set('allevents',allevents);
+          this.storage.set('allevents',allevents).then(()=>{
+            this.goToHomePage();
+          });
       });
-      this.goToHomePage();
   }
 
   validation(){
@@ -61,6 +64,6 @@ export class CreatePage {
       return state;
   }
   goToHomePage(){
-    this.navCtrl.pop(HomePage);
+    this.navCtrl.parent.select(0);
   }
 }

@@ -1,3 +1,4 @@
+import { ChangeColor } from './../../utility/colors';
 import { SortPipe } from './../../utility/sort-pipe';
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
@@ -6,7 +7,7 @@ import { CompletedListPage } from '../completed-list/completed-list';
 
 @Component({
   templateUrl: 'tabs.html',
-  providers:[SortPipe]
+  providers:[SortPipe,ChangeColor]
 })
 export class TabsPage {
   // this tells the tabs component which Pages

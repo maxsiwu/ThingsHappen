@@ -1,3 +1,4 @@
+import { ChangeColor } from './../../utility/colors';
 import { EditPage } from './../edit/edit';
 import { DetailPage } from './../detail/detail';
 import { SortPipe } from './../../utility/sort-pipe';
@@ -16,9 +17,16 @@ import { DateFormat } from './../../utility/date-format';
 export class HomePage {
 	_allevents: [Event]
 	_oneEvent: Event
-
-	constructor(public navCtrl: NavController, public storage: Storage, public sortBy: SortPipe, public dateFormat: DateFormat) {
+  colorDiff: number
+  colorCode: string
+  currentLength: number
+	constructor(public navCtrl: NavController,
+              public storage: Storage,
+              public sortBy: SortPipe,
+              public dateFormat: DateFormat,
+              public changeColor:ChangeColor) {
 		//this.storage.clear();
+    this.colorCode = "#00FF00";
 	}
 
 	ionViewWillEnter() {
@@ -26,11 +34,25 @@ export class HomePage {
 	}
 	displayData() {
 		this.storage.get('allevents').then((allevents) => {
+      
 			if (allevents != null) {
-				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
+				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+        this.currentLength = 0;
+        for(var i = 0; i < this._allevents.length; i++){
+          if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
+            this.currentLength++
+            console.log("?",this.currentLength)
+          }
+        }
+        this.colorDiff = this.changeColor.getColorDiff(this.colorCode, this.currentLength);
 			}
 		});
 	}
+
+  showBgColor(i){
+    console.log("??",this.colorDiff)
+    return this.changeColor.lightenDarkenColor(this.colorCode, i*this.colorDiff)
+  }
 
 	editEvent = (index): void => {
 		this.storage.get('allevents').then((allevents) => {

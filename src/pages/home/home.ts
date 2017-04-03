@@ -44,6 +44,7 @@ export class HomePage {
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
             this.colorIndex[i] = this.currentLength;
             this.currentLength++;
+						console.log(this._allevents[i].eventDateTime.getHours(), this._allevents[i].eventDateTime.getMinutes())
           }
         }
         this.colorDiff = this.changeColor.getColorDiff(this.colorCode, this.currentLength);

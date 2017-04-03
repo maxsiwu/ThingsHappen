@@ -23,14 +23,22 @@ export class CreatePage {
               public storage:Storage,
               public dateFormat:DateFormat) {
     //this.storage.clear();
-    var now = new Date()
+    this.populateFormFields();
+  }
+  populateFormFields(){
+    var now = new Date();
+    this.title = "";
     this.intervalType = "hours";
       this.date = '' + now.getFullYear()
               + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
-              + '-' + this.dateFormat.forceTwoDigits(now.getDate())
+              + '-' + this.dateFormat.forceTwoDigits(now.getDate());
       this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
-                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes())
+                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
+      this.repeatWhenComplete = true;
   }
+  ionViewWillEnter() {
+		this.populateFormFields();
+	}
 
   updateEvent(){
 	  this.validation();
@@ -46,8 +54,6 @@ export class CreatePage {
           eventModel.intervalValue = this.intervalValue;
           eventModel.intervalType = this.intervalType;
           eventModel.repeatWhenComplete = this.repeatWhenComplete;
-
-          console.log("somethings")
 
           if(!allevents){
               allevents = []

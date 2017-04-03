@@ -38,7 +38,12 @@ export class EditPage {
       this.isrepeat = this.event.isrepeat;
       this.intervalValue = this.event.intervalValue;
       this.intervalType = this.event.intervalType;
-      this.repeatWhenComplete = this.event.repeatWhenComplete;
+      if(typeof(this.event.repeatWhenComplete) == "undefined"){
+        this.repeatWhenComplete = true
+      }else{
+        this.repeatWhenComplete = this.event.repeatWhenComplete;
+      }
+      
       this.isComplete = this.event.isComplete;
       this.isStarred = this.event.isStarred;
       this.description = this.event.description;

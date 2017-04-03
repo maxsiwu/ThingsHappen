@@ -10,7 +10,7 @@
   <ion-list>
       <div *ngFor="let _event of _allevents; let i = index">
       <ion-item-sliding  *ngIf="_event.isComplete == true">
-        <button ion-item (click)="goToDetails(i)">
+        <button ion-item (press)="goToDetails(i)">
           <h1>{{_event.title}}</h1>
           <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
           <span *ngIf="_event.eventDateTime" item-right style="text-align:right;">

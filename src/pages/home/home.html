@@ -7,31 +7,30 @@
 <ion-content padding>
   <ion-list>
     <div *ngFor="let _event of _allevents; let i = index">
-    <ion-item-sliding  *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
+    <ion-item-sliding  class="single-event" *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
       <button ion-item (click)="goToDetails(i)" [ngStyle]="{'background-color': showBgColor(i)}" >
         <!--<ion-avatar item-left>
           <img src="images/delete-purple.png">
         </ion-avatar>-->
-        <h1>{{_event.title}}</h1>
+        <h2>{{_event.title}}</h2>
         <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
-        <span *ngIf="_event.eventDateTime" item-right style="text-align:right;">
+        <span *ngIf="_event.eventDateTime" item-right class="big-number">
           <h1>
-            <ion-icon  *ngIf="_event.isStarred == true" name="md-flower" item-right></ion-icon>
+            <ion-icon  *ngIf="_event.isStarred == true" name="ios-star" item-right></ion-icon>
             {{getTimeLeft(_event.eventDateTime).value}}
           </h1>
           <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
         </span>
       </button>
       <ion-item-options side="left">
-        <button ion-button (click)="editEvent(i)" color="secondary">
-          <ion-icon name="edit"></ion-icon>
+        <button ion-button (click)="editEvent(i)" color="edit-color">
+          <ion-icon name="edit" class="slide-icon"></ion-icon>
           Edit
         </button>
       </ion-item-options>
       <ion-item-options side="right">
-        <button ion-button (click)="completeEvent(i)" color="primary">
-          <ion-icon name="complete"></ion-icon>
-          Complete
+        <button ion-button (click)="completeEvent(i)" color="complete-color">
+          <ion-icon name="md-checkmark" class="slide-icon"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>

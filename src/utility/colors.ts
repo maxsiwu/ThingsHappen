@@ -1,5 +1,8 @@
 export class ChangeColor{
     getColorDiff(colorCode, length){
+        if (colorCode[0] == "#") {
+            colorCode = colorCode.slice(1);
+        }
         var num = parseInt(colorCode,16);
         var r = (num >> 16);
         var g = ((num >> 8) & 0x00FF);

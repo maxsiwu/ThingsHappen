@@ -8,7 +8,6 @@
 
 <ion-content padding>
 <ion-list>
-
   <ion-item>
     <ion-label fixed>Title</ion-label>
     <ion-input [(ngModel)]="title" type="text"></ion-input>
@@ -42,6 +41,9 @@
       <ion-toggle [(ngModel)]="repeatWhenComplete" checked="false" item-bottom></ion-toggle>
     </ion-item>
   </div>
+  <ion-item>
+      <ion-textarea [(ngModel)]="description" placeholder="Add description"></ion-textarea>
+  </ion-item>
 </ion-list>
 <button ion-button (click)="updateEvent()">Update</button>
 </ion-content>

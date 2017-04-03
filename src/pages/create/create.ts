@@ -23,7 +23,13 @@ export class CreatePage {
               public storage:Storage,
               public dateFormat:DateFormat) {
     //this.storage.clear();
+    var now = new Date()
     this.intervalType = "hours";
+      this.date = '' + now.getFullYear()
+              + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
+              + '-' + this.dateFormat.forceTwoDigits(now.getDate())
+      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
+                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes())
   }
 
   updateEvent(){

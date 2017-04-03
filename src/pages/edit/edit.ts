@@ -23,23 +23,25 @@ export class EditPage {
   repeatWhenComplete:boolean;
   isComplete:boolean;
   isStarred:boolean;
+  description:string;
 
   constructor(params: NavParams, public navCtrl: NavController, public storage:Storage, public dateFormat:DateFormat, public sortBy:SortPipe) {
       this.event = params.data.event;
       this.index = params.data.index;
-      var eventTimeObj = this.event.eventDateTime
+      var eventTimeObj = this.event.eventDateTime;
       this.title = this.event.title;
       this.date = '' + eventTimeObj.getFullYear()
                   + '-' + this.dateFormat.forceTwoDigits(eventTimeObj.getMonth()+1)
-                  + '-' + this.dateFormat.forceTwoDigits(eventTimeObj.getDate())
+                  + '-' + this.dateFormat.forceTwoDigits(eventTimeObj.getDate());
       this.time = '' + this.dateFormat.forceTwoDigits(eventTimeObj.getHours())
-                  + ':' + this.dateFormat.forceTwoDigits(eventTimeObj.getMinutes())
-      this.isrepeat = this.event.isrepeat
-      this.intervalValue = this.event.intervalValue
-      this.intervalType = this.event.intervalType
-      this.repeatWhenComplete = this.event.repeatWhenComplete
-      this.isComplete = this.event.isComplete
-      this.isStarred = this.event.isStarred
+                  + ':' + this.dateFormat.forceTwoDigits(eventTimeObj.getMinutes());
+      this.isrepeat = this.event.isrepeat;
+      this.intervalValue = this.event.intervalValue;
+      this.intervalType = this.event.intervalType;
+      this.repeatWhenComplete = this.event.repeatWhenComplete;
+      this.isComplete = this.event.isComplete;
+      this.isStarred = this.event.isStarred;
+      this.description = this.event.description;
   }
 
   updateEvent(){
@@ -58,6 +60,7 @@ export class EditPage {
           changedEvent.repeatWhenComplete = this.repeatWhenComplete;
           changedEvent.isComplete = this.isComplete;
           changedEvent.isStarred = this.isStarred;
+          changedEvent.description = this.description;
 
           this.storage.get('allevents').then((allevents) => {
               this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
@@ -65,19 +68,19 @@ export class EditPage {
               this.storage.set('allevents',allevents);
           })
       });
-      this.navCtrl.pop()
+      this.navCtrl.pop();
   }
 
   validation(){
       var state = true;
-      console.log(this.date)
+      console.log(this.date);
       // var errors = [];
       if (typeof(this.time) == 'undefined'){
           this.time = '00:00';
       }
       console.log(this.date)
       if (typeof(this.date) == 'undefined'){
-        var now = new Date()
+        var now = new Date();
         this.date = '' + now.getFullYear()
                     + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
                     + '-' + this.dateFormat.forceTwoDigits(now.getDate());

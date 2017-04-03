@@ -15,7 +15,7 @@
           <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
           <span *ngIf="_event.eventDateTime" item-right style="text-align:right;">
             <h1>
-              <ion-icon  *ngIf="_event.isStarred == true" name="md-flower" item-right></ion-icon>
+              <ion-icon  *ngIf="_event.isStarred == true" name="ios-star" item-right></ion-icon>
               {{getTimeLeft(_event.eventDateTime).value}}
             </h1>
             <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
@@ -23,14 +23,12 @@
         </button>
         <ion-item-options side="left">
           <button ion-button (click)="bringBackEvent(i)" color="secondary">
-            <ion-icon name="edit"></ion-icon>
-            Not Completed
+            <ion-icon name="md-close" class="slide-icon"></ion-icon>
           </button>
         </ion-item-options>
         <ion-item-options side="right">
           <button ion-button (click)="deleteEvent(i)" color="primary">
-            <ion-icon name="delete"></ion-icon>
-            Delete
+            <ion-icon name="ios-trash" class="slide-icon"></ion-icon>
           </button>
         </ion-item-options>
       </ion-item-sliding>

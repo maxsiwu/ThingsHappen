@@ -27,7 +27,7 @@ export class HomePage {
               public dateFormat: DateFormat,
               public changeColor:ChangeColor) {
 		//this.storage.clear();
-    this.colorCode = "#00FF00";
+    this.colorCode = "#b7b3bc";
 	}
 
 	ionViewWillEnter() {
@@ -35,7 +35,7 @@ export class HomePage {
 	}
 	displayData() {
 		this.storage.get('allevents').then((allevents) => {
-      
+
 			if (allevents != null) {
 				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
         this.currentLength = 0;
@@ -44,7 +44,6 @@ export class HomePage {
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
             this.colorIndex[i] = this.currentLength;
             this.currentLength++;
-            console.log("?",this.currentLength)
           }
         }
         this.colorDiff = this.changeColor.getColorDiff(this.colorCode, this.currentLength);
@@ -53,8 +52,7 @@ export class HomePage {
 	}
 
   showBgColor(i){
-    console.log("??",i,this.colorIndex)
-    return this.changeColor.lightenDarkenColor(this.colorCode, this.colorIndex[i]*this.colorDiff)
+    return this.changeColor.lightenDarkenColor(this.colorCode, -this.colorIndex[i]*this.colorDiff)
   }
 
 	editEvent = (index): void => {
@@ -91,7 +89,9 @@ export class HomePage {
 
 			console.log(this._oneEvent.eventDateTime)
 			allevents[index] = this._oneEvent
-			this.storage.set('allevents', allevents);
+			this.storage.set('allevents', allevents).then(()=>{
+        this.displayData();
+      });
 		})
 	}
 

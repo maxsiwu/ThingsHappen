@@ -10,16 +10,17 @@ export class Event {
     repeatWhenComplete:boolean;
     isStarred:boolean;
     isComplete:boolean;
+    description:string;
 
     constructor(){
         // setting default values
-        this.title = "untitled"
-        var dateFormat = new DateFormat
-        var now = new Date()
-		this.eventDateTime = new Date(now.getFullYear() + '-' 
-                            + dateFormat.forceTwoDigits(now.getMonth()+1) 
-                            + '-' + dateFormat.forceTwoDigits(now.getDate()) 
+        this.title = "untitled";
+        var dateFormat = new DateFormat;
+        var now = new Date();
+		this.eventDateTime = new Date(now.getFullYear() + '-'
+                            + dateFormat.forceTwoDigits(now.getMonth()+1)
+                            + '-' + dateFormat.forceTwoDigits(now.getDate())
                             + 'T00:00:00');
-        
+
     }
 }

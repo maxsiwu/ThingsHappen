@@ -9,25 +9,23 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-card-content>
-      <!--<img src="img/nin-live.png"/>-->
-      <div class="card-title">
-        <h1>{{ event.title }}</h1>
-      </div>
-      <div class="card-subtitle">
-        <h2>{{ event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h2>
-      </div>
-      <button ion-button item-right (click)="editEvent()">
-        Edit
-      </button>
-
+    <ion-item class="card-title">
+      <h1>{{ event.title }}</h1>
+      <h2>{{ event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h2>
+    </ion-item>
+    <ion-card-content class="event-description">
+        <span *ngIf=" event.description != '' ">
+          {{event.description}}
+        </span>
+    </ion-card-content>
+    <ion-row>
+      <button ion-button item-right (click)="editEvent()">Edit</button>
       <button ion-button (click)="watchEvent()" color="danger">
         <span *ngIf="event.isStarred == true">Unwatch</span>
         <span *ngIf="event.isStarred != true">Watch</span>
       </button>
-      <button ion-button color="dark" (click)="deleteEvent()" >
-        Delete
+      <button ion-button color="dark" (click)="deleteEvent()" >Delete
       </button>
-    </ion-card-content>
+    </ion-row>
   </ion-card>
 </ion-content>

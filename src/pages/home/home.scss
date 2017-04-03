@@ -30,8 +30,12 @@ page-home {
     }
 
     .slide-icon {
-        width: 3em;
+        width: 2em;
         font-size: 2em;
+    }
+    .item-md.item-block .item-inner,
+    ion-item-options{
+        border: none !important;
     }
 }
 

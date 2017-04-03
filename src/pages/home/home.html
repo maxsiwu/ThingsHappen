@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Unfinished Business</ion-title>
+    <ion-title>Coming Up</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -25,13 +25,12 @@
       </button>
       <ion-item-options side="left">
         <button ion-button (click)="editEvent(i)" color="edit-color">
-          <ion-icon name="edit" class="slide-icon"></ion-icon>
-          Edit
+          <i class="fa fa-pencil-square-o slide-icon" aria-hidden="true"></i>
         </button>
       </ion-item-options>
       <ion-item-options side="right">
         <button ion-button (click)="completeEvent(i)" color="complete-color">
-          <ion-icon name="md-checkmark" class="slide-icon"></ion-icon>
+          <i class="fa fa-check slide-icon" aria-hidden="true"></i>
         </button>
       </ion-item-options>
     </ion-item-sliding>

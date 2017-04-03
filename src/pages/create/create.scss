@@ -1,3 +1,45 @@
 page-create {
+    $input-bg-color :#f6f6f6;
 
+    input[type="text"],
+    input[type="date"],
+    input[type="time"]
+    {
+        display:block;
+        width: 100%;
+        background-color: $input-bg-color;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    input[type="number"]{
+        background-color: $input-bg-color;
+        padding: 10px;
+        border-radius: 10px;
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+    }
+
+    .list-md .item-block .item-inner,
+    .item-md.item-block .item-inner {
+        border-bottom: none;
+    }
+
+    .save-btn {
+        width: 160px;
+        margin: 0 auto;
+
+        button {
+            width: 100%;
+            margin: 0.4rem 0;
+            height: 40px !important;
+            border-radius: 25px;
+            font-size: 1em !important;
+        }
+    }
 }

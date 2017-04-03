@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Create Event
+      Create
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,17 +10,14 @@
 <ion-list>
 
   <ion-item>
-    <ion-label fixed>Title</ion-label>
-    <ion-input [(ngModel)]="title" type="text" value=""></ion-input>
+    <input [(ngModel)]="title" type="text" placeholder="Title">
   </ion-item>
 
   <ion-item>
-    <ion-label fixed>Date</ion-label>
     <input [(ngModel)]="date" type="date" item-right>
   </ion-item>
 
   <ion-item>
-    <ion-label fixed>Time</ion-label>
     <input [(ngModel)]="time" type="time" item-right>
   </ion-item>
 
@@ -30,18 +27,20 @@
   </ion-item>
   <div *ngIf="isrepeat == true">
     <ion-item>
-      <ion-label fixed>Repeat every</ion-label>
-      <ion-input [(ngModel)]="intervalValue" type="number"></ion-input>
+      <ion-label fixed>Every</ion-label>
+      <ion-input [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
       <ion-select [(ngModel)]="intervalType" item-right>
         <ion-option value="hours">Hours</ion-option>
         <ion-option value="minutes">Minutes</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label fixed>Reset when complete</ion-label>
+      <ion-label>Reset when complete</ion-label>
       <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
     </ion-item>
   </div>
+  <ion-item class="save-btn">
+    <button ion-button (click)="updateEvent()">Create</button>
+  </ion-item>
 </ion-list>
-<button ion-button (click)="updateEvent()">Create</button>
 </ion-content>

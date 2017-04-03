@@ -1,19 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Some Things</ion-title>
+    <ion-title>Unfinished Business</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-list>
     <div *ngFor="let _event of _allevents; let i = index">
     <ion-item-sliding  class="single-event" *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
       <button ion-item (click)="goToDetails(i)" [ngStyle]="{'background-color': showBgColor(i)}" >
-        <!--<ion-avatar item-left>
-          <img src="images/delete-purple.png">
-        </ion-avatar>-->
         <h2>{{_event.title}}</h2>
-        <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
+        <span *ngIf="">
+          <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h5>
+        </span>
         <span *ngIf="_event.eventDateTime" item-right class="big-number">
           <h1>
             <ion-icon  *ngIf="_event.isStarred == true" name="ios-star" item-right></ion-icon>

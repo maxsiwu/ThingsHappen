@@ -13,19 +13,22 @@
       <h1>{{ event.title }}</h1>
       <h2>{{ event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h2>
     </ion-item>
-    <ion-card-content class="event-description">
-        <span *ngIf=" event.description != '' ">
-          {{event.description}}
+    <ion-card-content>
+      <div id="event-description">
+        <ion-row class="button-row">
+          <button ion-button item-right (click)="editEvent()">Edit</button>
+          <button ion-button (click)="watchEvent()" color="danger">
+            <span *ngIf="event.isStarred == true">Unwatch</span>
+            <span *ngIf="event.isStarred != true">Watch</span>
+          </button>
+          <button ion-button color="dark" (click)="deleteEvent()" >Delete
+          </button>
+        </ion-row>
+        <span *ngIf="event.description">
+          <h3>Notes:</h3>
+          <pre>{{event.description}}</pre>
         </span>
+    </div>
     </ion-card-content>
-    <ion-row>
-      <button ion-button item-right (click)="editEvent()">Edit</button>
-      <button ion-button (click)="watchEvent()" color="danger">
-        <span *ngIf="event.isStarred == true">Unwatch</span>
-        <span *ngIf="event.isStarred != true">Watch</span>
-      </button>
-      <button ion-button color="dark" (click)="deleteEvent()" >Delete
-      </button>
-    </ion-row>
   </ion-card>
 </ion-content>

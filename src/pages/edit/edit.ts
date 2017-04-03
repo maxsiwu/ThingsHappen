@@ -61,7 +61,7 @@ export class EditPage {
           changedEvent.isComplete = this.isComplete;
           changedEvent.isStarred = this.isStarred;
           changedEvent.description = this.description;
-
+          
           this.storage.get('allevents').then((allevents) => {
               this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
               allevents[this.index] = changedEvent

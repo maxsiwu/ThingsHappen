@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
 import { NavController, NavParams } from 'ionic-angular';
 import { DateFormat } from './../../utility/date-format';
 
-@Component({templateUrl: 'detail.html',providers: [DateFormat,SortPipe]})
+@Component({selector: 'page-detail',templateUrl: 'detail.html',providers: [DateFormat,SortPipe]})
 
 export class DetailPage {
   _allevents;

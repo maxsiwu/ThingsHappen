@@ -6,11 +6,6 @@ page-detail {
             padding-bottom: 10px;
         }
     }
-    .close-detail-btn{
-        background-color: transparent !important;
-        font-size: 1.2em;
-        color: white;
-    }
     .button-row{
         margin-bottom: 20px;
     }
@@ -26,11 +21,34 @@ page-detail {
     .toolbar-title,
     .toolbar-title-md{
         color: white;
+        button {
+            margin-right: 0 !important;
+        }
+        overflow:visible;
     }
     .content-md,
     .content{
         @include star-bg;
     }
+    .card,
+    .card-md,
+    .item,
+    .item-md {
+        padding-top: 10px;
+        background-color: $light-blue !important;
+    }
+    .card,
+    .card-md{
+        border-radius: 20px;
+    }
+    h1 {
+        @include display-font;
+    }
 
+    button {
+        background-color: transparent !important;
+        font-size: 1.6em;
+        margin-right: 5px;
+    }
 
 }

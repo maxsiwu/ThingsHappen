@@ -1,7 +1,7 @@
 <ion-header class="opaque">
   <ion-navbar hideBackButton>
     <ion-title *ngIf="event.eventDateTime">
-      <button item-left (click)="goBack()" class="close-detail-btn">
+      <button item-left (click)="goBack()" class="nav-close-btn">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
       {{ getTimeLeft(event.eventDateTime).value }}
@@ -19,12 +19,19 @@
     <ion-card-content>
       <div id="event-description">
         <ion-row class="button-row">
-          <button ion-button item-right (click)="editEvent()">Edit</button>
-          <button ion-button (click)="watchEvent()" color="danger">
-            <span *ngIf="event.isStarred == true">Unwatch</span>
-            <span *ngIf="event.isStarred != true">Watch</span>
+          <button item-right (click)="editEvent()">
+            <i class="fa fa-pencil-square-o"></i>
           </button>
-          <button ion-button color="dark" (click)="deleteEvent()" >Delete
+          <button item-right (click)="watchEvent()" color="danger">
+            <span *ngIf="event.isStarred == true">
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </span>
+            <span *ngIf="event.isStarred != true">
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </span>
+          </button>
+          <button item-right color="dark" (click)="deleteEvent()">
+            <i class="fa fa-trash"></i>
           </button>
         </ion-row>
         <span *ngIf="event.description">

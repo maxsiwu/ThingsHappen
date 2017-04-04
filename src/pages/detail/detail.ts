@@ -45,7 +45,6 @@ export class DetailPage {
       }else{
         this.event.isStarred = false
       }
-      
       allevents[this.index] = this.event
       this.storage.set('allevents',allevents);
     })

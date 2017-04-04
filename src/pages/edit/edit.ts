@@ -93,4 +93,7 @@ export class EditPage {
       }
         return state;
   }
+goBack(){
+    this.navCtrl.pop();
+  }
 }

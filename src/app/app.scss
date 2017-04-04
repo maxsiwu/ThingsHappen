@@ -32,6 +32,12 @@ h2 {
     background-color: rgba(52, 55, 89, 0.7);
 }
 
+.nav-close-btn{
+    background-color: transparent !important;
+    font-size: 1.2em;
+    color: white;
+}
+
 //---for tab bar---
 .tabbar{
     background-color: $tab-bar-color !important;

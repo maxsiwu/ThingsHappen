@@ -1,49 +1,52 @@
 <ion-header class="opaque">
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>
-      Edit Event
+      <button item-left (click)="goBack()" class="nav-close-btn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+      Edit
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="edit-content" padding fullscreen>
 <ion-list>
-  <ion-item>
-    <ion-label fixed>Title</ion-label>
-    <ion-input [(ngModel)]="title" type="text"></ion-input>
+    <ion-item no-lines>
+    <input [(ngModel)]="title" type="text" placeholder="Title">
   </ion-item>
 
-  <ion-item>
-    <ion-label fixed>Date</ion-label>
-    <input [(ngModel)]="date" type="date" item-right>
+  <ion-item no-lines>
+    <input [(ngModel)]="date" type="date">
   </ion-item>
 
-  <ion-item>
-    <ion-label fixed>Time</ion-label>
-    <input [(ngModel)]="time" type="time" item-right>
+  <ion-item no-lines>
+    <input [(ngModel)]="time" type="time">
   </ion-item>
 
-  <ion-item>
+  <ion-item no-lines>
     <ion-label fixed>Repeat</ion-label>
     <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
   </ion-item>
-    <div *ngIf="isrepeat == true">
-    <ion-item>
-      <ion-label fixed>Repeat every</ion-label>
-      <ion-input [(ngModel)]="intervalValue" type="number"></ion-input>
-      <ion-select [(ngModel)]="intervalType" item-right>
+
+  <div *ngIf="isrepeat == true">
+    <ion-item no-lines>
+      <ion-label class="number-label" item-left>Every</ion-label>
+      <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
+      <ion-select class="interval-select" [(ngModel)]="intervalType">
         <ion-option value="hours">Hours</ion-option>
         <ion-option value="minutes">Minutes</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label fixed>Reset when complete</ion-label>
+    <ion-item no-lines>
+      <ion-label>Reset when complete</ion-label>
       <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
     </ion-item>
   </div>
   <ion-item>
       <ion-textarea [(ngModel)]="description" placeholder="Add description"></ion-textarea>
   </ion-item>
+  <ion-item class="save-btn" no-lines>
+    <button ion-button (click)="updateEvent()">Update</button>
+  </ion-item>
 </ion-list>
-<button ion-button (click)="updateEvent()">Update</button>
 </ion-content>

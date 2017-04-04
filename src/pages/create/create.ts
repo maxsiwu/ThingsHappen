@@ -40,6 +40,10 @@ export class CreatePage {
 		this.populateFormFields();
 	}
 
+  ionViewWillLeave(){
+    this.populateFormFields();
+  }
+
   updateEvent(){
 	  this.validation();
 	  this.createEvent();

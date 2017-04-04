@@ -1,3 +1,4 @@
+import { DetailPage } from './../detail/detail';
 import { SortPipe } from './../../utility/sort-pipe';
 import { DateFormat } from './../../utility/date-format';
 import { Event } from './../../models/event';
@@ -28,6 +29,14 @@ export class EditPage {
   constructor(params: NavParams, public navCtrl: NavController, public storage:Storage, public dateFormat:DateFormat, public sortBy:SortPipe) {
       this.event = params.data.event;
       this.index = params.data.index;
+      this.displayData();
+  }
+
+  ionViewWillEnter(){
+      this.displayData();
+  }
+
+  displayData(){
       var eventTimeObj = this.event.eventDateTime;
       this.title = this.event.title;
       this.date = '' + eventTimeObj.getFullYear()
@@ -43,7 +52,7 @@ export class EditPage {
       }else{
         this.repeatWhenComplete = this.event.repeatWhenComplete;
       }
-      
+
       this.isComplete = this.event.isComplete;
       this.isStarred = this.event.isStarred;
       this.description = this.event.description;
@@ -93,7 +102,7 @@ export class EditPage {
       }
         return state;
   }
-goBack(){
-    this.navCtrl.pop();
-  }
+    goBack(){
+        this.navCtrl.push(DetailPage, { event: this.event, index: this.index });
+    }
 }

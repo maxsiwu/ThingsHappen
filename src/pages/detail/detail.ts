@@ -21,15 +21,14 @@ export class DetailPage {
   }
 
 	ionViewWillEnter() {
-		console.log(this.event)
     this.storage.get('allevents').then((allevents) => {
-      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
-      this.event = this._allevents[this.index]
+      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime");
+      this.event = this._allevents[this.index];
     })
 	}
 
   getTimeLeft = (eventTime):any => {
-    return this.dateFormat.getTimeLeft(eventTime)
+    return this.dateFormat.getTimeLeft(eventTime);
   }
 
   editEvent = ():void => {
@@ -38,26 +37,25 @@ export class DetailPage {
 
   watchEvent = ():void => {
     this.storage.get('allevents').then((allevents) => {
-      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
-      this.event = this._allevents[this.index]
+      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime");
+      this.event = this._allevents[this.index];
       if(this.event.isStarred != true){
-        this.event.isStarred = true
+        this.event.isStarred = true;
       }else{
-        this.event.isStarred = false
+        this.event.isStarred = false;
       }
-      allevents[this.index] = this.event
+      allevents[this.index] = this.event;
       this.storage.set('allevents',allevents);
     })
   }
 
   deleteEvent = ():void => {
       this.storage.get('allevents').then((allevents) => {
-          this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime")
-          this.storage.set('allevents',this._allevents)
-          allevents.splice(this.index, 1)
-          this._allevents = allevents
-          console.log(this._allevents,allevents)
-          this.storage.set('allevents',this._allevents)
+          this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime");
+          this.storage.set('allevents',this._allevents);
+          allevents.splice(this.index, 1);
+          this._allevents = allevents;
+          this.storage.set('allevents',this._allevents);
           this.navCtrl.pop(HomePage);
       })
   }

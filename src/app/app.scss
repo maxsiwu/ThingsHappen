@@ -49,11 +49,13 @@ h2 {
 }
 
 //---for slider---
-.toggle-md .toggle-checked {
+.toggle-md .toggle-checked,
+.toggle .toggle-checked  {
     background-color: $tab-bar-color  !important;
 }
 
-.toggle-md .toggle-checked .toggle-inner {
+.toggle-md .toggle-checked .toggle-inner
+.toggle .toggle-checked .toggle-inner {
     background-color: $light-purple  !important;
 }
 
@@ -93,3 +95,5 @@ h2 {
         font-size: 0.8em;
     }
 }
+
+// for toggle button

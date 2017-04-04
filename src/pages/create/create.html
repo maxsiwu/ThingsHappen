@@ -26,6 +26,7 @@
     <ion-label fixed>Repeat</ion-label>
     <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
   </ion-item>
+
   <div *ngIf="isrepeat == true">
     <ion-item no-lines>
       <ion-label class="number-label" item-left>Every</ion-label>
@@ -40,6 +41,7 @@
       <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
     </ion-item>
   </div>
+  
   <ion-item class="save-btn" no-lines>
     <button ion-button (click)="updateEvent()">Create</button>
   </ion-item>

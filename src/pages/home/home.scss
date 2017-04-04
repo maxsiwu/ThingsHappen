@@ -1,42 +1,7 @@
 page-home {
-    .single-event {
-        h1,h2,h5 {
-            color: white;
-        }
 
-        h1 {
-            text-shadow:2px 2px 0 black;
-        }
-
-        h2 {
-            font-size: 1.1em;
-            padding-top: 20px;
-            font-weight: 700;
-        }
-        h5 {
-            font-size: 0.7em;
-        }
-    }
-
-    .big-number {
-        width: 23%;
-        h1 {
-            font-size: 1.5em;
-            text-align: center;
-        }
-        h5 {
-            text-align: center;
-            font-size: 0.8em;
-        }
-    }
-
-    .slide-icon {
-        width: 2em;
-        font-size: 2em;
-    }
-    .item-md.item-block .item-inner,
-    ion-item-options{
-        border: none !important;
+    .list-content{
+        @include star-bg;
     }
 
 }

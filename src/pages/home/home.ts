@@ -27,7 +27,7 @@ export class HomePage {
               public dateFormat: DateFormat,
               public changeColor:ChangeColor) {
 		//this.storage.clear();
-    this.colorCode = "#b7b3bc";
+    this.colorCode = "#8388af";
 	}
 
 	ionViewWillEnter() {

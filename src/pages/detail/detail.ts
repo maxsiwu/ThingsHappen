@@ -62,4 +62,7 @@ export class DetailPage {
           this.navCtrl.pop(HomePage);
       })
   }
+  goBack(){
+    this.navCtrl.pop();
+  }
 }

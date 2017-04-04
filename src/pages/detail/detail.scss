@@ -6,6 +6,11 @@ page-detail {
             padding-bottom: 10px;
         }
     }
+    .close-detail-btn{
+        background-color: transparent !important;
+        font-size: 1.2em;
+        color: white;
+    }
     .button-row{
         margin-bottom: 20px;
     }
@@ -16,6 +21,15 @@ page-detail {
         white-space: -pre-wrap;      /* Opera 4-6 */
         white-space: -o-pre-wrap;    /* Opera 7 */
         word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
+
+    .toolbar-title,
+    .toolbar-title-md{
+        color: white;
+    }
+    .content-md,
+    .content{
+        @include star-bg;
     }
 
 

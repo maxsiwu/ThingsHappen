@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,77 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-title {
+    text-align: center;
+    @include display-font;
+}
+
+h2 {
+    font-family: arial;
+}
+
+//---for header---
+.opaque {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.opaque .toolbar-background {
+    background-color: rgba(52, 55, 89, 0.7);
+}
+
+//---for tab bar---
+.tabbar{
+    background-color: $tab-bar-color !important;
+    min-height: 60px;
+}
+
+.tab-button-icon {
+    color: white !important;
+}
+
+//---for slider---
+.toggle-md .toggle-checked {
+    background-color: $tab-bar-color  !important;
+}
+
+.toggle-md .toggle-checked .toggle-inner {
+    background-color: $light-purple  !important;
+}
+
+//---for list item---
+.slide-icon {
+    width: 2em;
+    font-size: 2em;
+}
+
+.single-event {
+    h1,h2,h5 {
+        color: white;
+    }
+
+    h1 {
+        text-shadow:2px 2px 0 black;
+    }
+
+    h2 {
+        font-size: 1.1em;
+        padding-top: 20px;
+        font-weight: 700;
+    }
+    h5 {
+        font-size: 0.7em;
+    }
+}
+
+.big-number {
+    width: 23%;
+    h1 {
+        font-size: 1.5em;
+        text-align: center;
+    }
+    h5 {
+        text-align: center;
+        font-size: 0.8em;
+    }
+}

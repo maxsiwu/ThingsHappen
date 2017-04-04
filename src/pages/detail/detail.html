@@ -1,13 +1,16 @@
-<ion-header>
-  <ion-navbar>
+<ion-header class="opaque">
+  <ion-navbar hideBackButton>
     <ion-title *ngIf="event.eventDateTime">
+      <button item-left (click)="goBack()" class="close-detail-btn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
       {{ getTimeLeft(event.eventDateTime).value }}
       {{ getTimeLeft(event.eventDateTime).unit }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding fullscreen>
   <ion-card>
     <ion-item class="card-title">
       <h1>{{ event.title }}</h1>

@@ -12,8 +12,33 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
+@mixin display-font{
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}
 
+@mixin star-bg{
+  background:
+  linear-gradient(324deg, #2f303d 4%,   transparent 4%) -70px 43px,
+  linear-gradient( 36deg, #2f303d 4%,   transparent 4%) 30px 43px,
+  linear-gradient( 72deg, #37394f 8.5%, transparent 8.5%) 30px 43px,
+  linear-gradient(288deg, #37394f 8.5%, transparent 8.5%) -70px 43px,
+  linear-gradient(216deg, #37394f 7.5%, transparent 7.5%) -70px 23px,
+  linear-gradient(144deg, #37394f 7.5%, transparent 7.5%) 30px 23px,
 
+  linear-gradient(324deg, #2f303d 4%,   transparent 4%) -20px 93px,
+  linear-gradient( 36deg, #2f303d 4%,   transparent 4%) 80px 93px,
+  linear-gradient( 72deg, #484A6F 8.5%, transparent 8.5%) 80px 93px,
+  linear-gradient(288deg, #484A6F 8.5%, transparent 8.5%) -20px 93px,
+  linear-gradient(216deg, #484A6F 7.5%, transparent 7.5%) -20px 73px,
+  linear-gradient(144deg, #484A6F 7.5%, transparent 7.5%) 80px 73px;
+  background-color: #2f303d;
+  background-size: 100px 100px;
+}
+
+$light-blue: #dce6ea;
+$light-purple: #5b6099;
+$tab-bar-color: #343759;
+$input-bg-color :#fff;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -24,14 +49,17 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  complete-color: #6E3667,
-  edit-color: #FF6A5C,
+  delete-color:   #FB412C,
+  undo-color:     #A0BCB9,
+  complete-color: #FBCC3D,
+  edit-color:     #FF6A5C,
   input-bg-color: #f6f6f6,
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  header-color:   #8A79BC,
+  primary:        #387ef5,
+  secondary:      #32db64,
+  danger:         #f53d3d,
+  light:          #f4f4f4,
+  dark:           #222
 );
 
 

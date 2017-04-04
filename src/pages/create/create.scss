@@ -1,5 +1,4 @@
 page-create {
-    $input-bg-color :#f6f6f6;
 
     input[type="text"],
     input[type="date"],
@@ -17,14 +16,20 @@ page-create {
         -moz-appearance: none;
     }
 
-    input[type="number"]{
+    .number-input {
         background-color: $input-bg-color;
-        padding: 10px;
         border-radius: 10px;
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
+        flex: 0.4;
+        margin-left: 20px;
     }
-
+    .interval-select{
+        flex: 1;
+        max-width: 100%;
+        text-align: right;
+    }
+    .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner{
+        box-shadow:none;
+    }
     .list-md .item-block .item-inner,
     .item-md.item-block .item-inner {
         border-bottom: none;
@@ -41,5 +46,15 @@ page-create {
             border-radius: 25px;
             font-size: 1em !important;
         }
+    }
+    .button-md,
+    .button {
+        background-color: $tab-bar-color !important;
+    }
+
+    .create-content,
+    .item-md,
+    .item{
+        background-color: $light-blue !important;
     }
 }

@@ -1,14 +1,17 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Coming Up</ion-title>
+<ion-header class="opaque">
+  <ion-navbar color="header-color" no-border-bottom>
+    <ion-title>
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+       What's Next
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="list-content">
   <ion-list>
     <div *ngFor="let _event of _allevents; let i = index">
     <ion-item-sliding  class="single-event" *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
-      <button ion-item (click)="goToDetails(i)" [ngStyle]="{'background-color': showBgColor(i)}" detail-none>
+      <button ion-item (click)="goToDetails(i)" [ngStyle]="{'background-color': showBgColor(i)}" detail-none no-lines>
         <h2>{{_event.title}}</h2>
         <span *ngIf="_event.eventDateTime.getHours() == 0 && _event.eventDateTime.getMinutes() == 0">
           <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy'}}</h5>

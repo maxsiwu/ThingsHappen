@@ -1,17 +1,18 @@
 <ion-header class="opaque">
-  <ion-navbar hideBackButton>
-    <ion-title *ngIf="event.eventDateTime">
-      <button item-left (click)="goBack()" class="nav-close-btn">
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </button>
-      {{ getTimeLeft(event.eventDateTime).value }}
-      {{ getTimeLeft(event.eventDateTime).unit }}
-    </ion-title>
+  <ion-navbar hideBackButton *navbar>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding fullscreen>
   <ion-card>
+    <div *ngIf="event.eventDateTime">
+      <ion-icon name="ios-close" (tap)="goBack()" class="nav-close-btn" item-left></ion-icon>
+      <div class="display-num" item-right>
+        <h1>{{ getTimeLeft(event.eventDateTime).value}}</h1>
+        <h3>{{ getTimeLeft(event.eventDateTime).unit }}</h3>
+      </div>
+    </div>
     <ion-item class="card-title">
       <h1>{{ event.title }}</h1>
       <h2>{{ event.eventDateTime | date: 'MMMM dd, yyyy hh:mm a'}}</h2>
@@ -36,7 +37,9 @@
         </ion-row>
         <span *ngIf="event.description">
           <h3>Notes:</h3>
-          <pre>{{event.description}}</pre>
+          <ion-scroll scrollY="true" >
+            <pre>{{event.description}}</pre>
+          </ion-scroll>
         </span>
     </div>
     </ion-card-content>

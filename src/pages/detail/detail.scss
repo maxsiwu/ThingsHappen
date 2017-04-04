@@ -10,6 +10,34 @@ page-detail {
         margin-bottom: 20px;
     }
 
+    .nav-close-btn {
+        color: black;
+        font-size: 4em !important;
+        padding-left: 20px;
+    }
+    .display-num {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        width: 70px;
+        height: 70px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 100%;
+        background-color: $light-purple !important;
+        z-index: 100;
+        h1,h3 {
+            color: white !important;
+        }
+        h1 {
+            font-size: 1.3em;
+            padding-top: 5px;
+        }
+        h3 {
+            font-size: 0.8em;
+        }
+    }
+
     pre {
         white-space: pre-wrap;       /* Since CSS 2.1 */
         white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -48,7 +76,11 @@ page-detail {
     button {
         background-color: transparent !important;
         font-size: 1.6em;
-        margin-right: 5px;
+        padding-right: 10px !important;
+        padding-left: 0 !important;
+    }
+    ion-scroll {
+        height: 70%;
     }
 
 }

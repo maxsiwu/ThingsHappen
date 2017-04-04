@@ -23,8 +23,8 @@ page-edit {
     .number-input {
         background-color: $input-bg-color;
         border-radius: 10px;
-        flex: 0.4;
         margin-left: 20px;
+        padding-left: 10px !important;
     }
     .interval-select{
         flex: 1;

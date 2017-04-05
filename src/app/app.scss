@@ -96,4 +96,11 @@ h2 {
     }
 }
 
-// for toggle button
+// for toast
+
+.toast-message {
+    color: black !important;
+    background-color: $light-grey;
+    border: 2px solid $light-purple;
+    margin: 0 auto;
+}

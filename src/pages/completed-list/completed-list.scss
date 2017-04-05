@@ -6,4 +6,11 @@ page-completed-list {
     .record-content{
         background-color: $light-blue;
     }
+    .item-md,
+    .item {
+        border: none !important;
+    }
+    .list-md ion-item-options {
+        border: none !important;
+    }
 }

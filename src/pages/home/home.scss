@@ -4,5 +4,15 @@ page-home {
         @include star-bg;
     }
 
+    button {
+        height: 100% !important;
+    }
+    .item-md,
+    .item {
+        border-bottom: none !important;
+    }
+    .list-md ion-item-options {
+        border-bottom: none !important;
+    }
 }
 

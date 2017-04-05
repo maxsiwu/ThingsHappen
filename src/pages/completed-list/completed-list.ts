@@ -7,11 +7,13 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, NavParams } from 'ionic-angular';
 import { DateFormat } from './../../utility/date-format';
+import { AlertController } from 'ionic-angular';
+import { Toasts } from './../../utility/toasts';
 
 @Component({
   selector: 'page-completed-list',
   templateUrl: 'completed-list.html',
-  providers: [SortPipe, DateFormat]
+  providers: [SortPipe, DateFormat,Toasts]
 })
 
 export class CompletedListPage {
@@ -22,11 +24,13 @@ export class CompletedListPage {
   currentLength: number
   colorIndex: Array<number>
 
-  constructor(public navCtrl: NavController, 
-              public storage: Storage, 
-              public sortBy: SortPipe, 
+  constructor(public navCtrl: NavController,
+              public storage: Storage,
+              public sortBy: SortPipe,
               public dateFormat: DateFormat,
-              public changeColor:ChangeColor) {
+              public changeColor:ChangeColor,
+              public alertCtrl: AlertController,
+              public toastCtrl: Toasts) {
     //this.storage.clear();
     this.colorCode = "#8388af";
   }
@@ -34,13 +38,7 @@ export class CompletedListPage {
   ionViewWillEnter() {
     this.displayData();
   }
-  // displayData() {
-  //   this.storage.get('allevents').then((allevents) => {
-  //     if (allevents != null) {
-  //       this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-  //     }
-  //   });
-  // }
+
   displayData() {
 		this.storage.get('allevents').then((allevents) => {
 
@@ -68,6 +66,7 @@ export class CompletedListPage {
       this._oneEvent.isComplete = false
       allevents[index] = this._oneEvent
       this.storage.set('allevents', allevents);
+      this.toastCtrl.presentToast('Event Marked Incomplete','middle');
     })
   }
 
@@ -77,7 +76,6 @@ export class CompletedListPage {
       this.storage.set('allevents', this._allevents)
       allevents.splice(index, 1)
       this._allevents = allevents
-      console.log(this._allevents, allevents)
       this.storage.set('allevents', this._allevents)
     })
   }
@@ -94,4 +92,27 @@ export class CompletedListPage {
     })
   }
 
+  showDeleteAlert(index) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete the event?',
+      message: 'Once deleted, this action cannot be reversed.',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteEvent(index);
+            this.toastCtrl.presentToast('Event deleted','middle');
+            this.displayData();
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+            console.log('No clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }

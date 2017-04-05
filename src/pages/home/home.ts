@@ -1,3 +1,4 @@
+import { Toasts } from './../../utility/toasts';
 import { ChangeColor } from './../../utility/colors';
 import { EditPage } from './../edit/edit';
 import { DetailPage } from './../detail/detail';
@@ -11,7 +12,7 @@ import { DateFormat } from './../../utility/date-format';
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
-	providers: [SortPipe, DateFormat]
+	providers: [SortPipe, DateFormat,Toasts]
 })
 
 export class HomePage {
@@ -25,7 +26,8 @@ export class HomePage {
               public storage: Storage,
               public sortBy: SortPipe,
               public dateFormat: DateFormat,
-              public changeColor:ChangeColor) {
+              public changeColor:ChangeColor,
+							public toastCtrl: Toasts) {
 		//this.storage.clear();
     this.colorCode = "#8388af";
 	}
@@ -80,9 +82,13 @@ export class HomePage {
 							new Date(now.getTime() +
 								this._oneEvent.intervalValue * 60 * 60 * 1000)
 					} else {
-						this._oneEvent.eventDateTime =
-							new Date(this._oneEvent.eventDateTime.getTime() +
-								this._oneEvent.intervalValue * 60 * 60 * 1000)
+						var newDate = new Date(this._oneEvent.eventDateTime.getTime() +
+													this._oneEvent.intervalValue * 60 * 60 * 1000);
+						var interval = this._oneEvent.eventDateTime.getTime() - now.getTime()
+						if(interval < 0){
+								this._oneEvent.eventDateTime = newDate;
+						}
+
 					}
 				}
 				this._oneEvent.isComplete = false
@@ -92,6 +98,7 @@ export class HomePage {
 			allevents[index] = this._oneEvent
 			this.storage.set('allevents', allevents).then(()=>{
         this.displayData();
+				this.toastCtrl.presentToast('Event Completed','middle');
       });
 		})
 	}

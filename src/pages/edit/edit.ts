@@ -1,3 +1,4 @@
+import { Toasts } from './../../utility/toasts';
 import { DetailPage } from './../detail/detail';
 import { SortPipe } from './../../utility/sort-pipe';
 import { DateFormat } from './../../utility/date-format';
@@ -9,7 +10,7 @@ import { NavController,NavParams } from 'ionic-angular';
 @Component({
       selector: 'page-edit',
       templateUrl: 'edit.html',
-      providers:[DateFormat, SortPipe]
+      providers:[DateFormat, SortPipe, Toasts]
 })
 export class EditPage {
   allevents:[Event];
@@ -26,7 +27,12 @@ export class EditPage {
   isStarred:boolean;
   description:string;
 
-  constructor(params: NavParams, public navCtrl: NavController, public storage:Storage, public dateFormat:DateFormat, public sortBy:SortPipe) {
+  constructor(params: NavParams, 
+                public navCtrl: NavController, 
+                public storage:Storage, 
+                public dateFormat:DateFormat, 
+                public sortBy:SortPipe,
+                public toastCtrl: Toasts) {
       this.event = params.data.event;
       this.index = params.data.index;
       this.displayData();
@@ -59,7 +65,7 @@ export class EditPage {
   }
 
   updateEvent(){
-      //this.validation();
+      this.validation();
       this.saveEditedEvent();
   }
   saveEditedEvent(){
@@ -87,12 +93,21 @@ export class EditPage {
 
   validation(){
       var state = true;
-      console.log(this.date);
+    if(this.isrepeat && !this.repeatWhenComplete){
+        this.toastCtrl.presentToast('This event will repeat regardless of your action','middle');        
+    }
+
+    if(this.title == '' || typeof(this.title)=='undefined'){
+        this.title = 'Missing Title';
+    }
+
+    if(Math.floor(this.intervalValue) == 0 || typeof(this.intervalValue)=='undefined'){
+        this.intervalValue = 1;
+    }
       // var errors = [];
       if (typeof(this.time) == 'undefined'){
           this.time = '00:00';
       }
-      console.log(this.date)
       if (typeof(this.date) == 'undefined'){
         var now = new Date();
         this.date = '' + now.getFullYear()
@@ -100,9 +115,9 @@ export class EditPage {
                     + '-' + this.dateFormat.forceTwoDigits(now.getDate());
         console.log('day is empty'+this.date);
       }
-        return state;
+    return state;
   }
     goBack(){
-        this.navCtrl.push(DetailPage, { event: this.event, index: this.index });
+        this.navCtrl.pop();
     }
 }

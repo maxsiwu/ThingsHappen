@@ -1,7 +1,7 @@
 <ion-header class="opaque">
   <ion-navbar hideBackButton>
     <ion-title>
-      <button item-left (click)="goBack()" class="nav-close-btn">
+      <button (click)="goBack()" class="nav-close-btn">
         <i class="fa fa-times" aria-hidden="true"></i>
       </button>
       Edit
@@ -31,7 +31,7 @@
   <div *ngIf="isrepeat == true">
     <ion-item no-lines>
       <ion-label class="number-label" item-left>Every</ion-label>
-      <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
+      <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="1" max="100" inputmode="numeric" pattern="[0-9]*"></ion-input>
       <ion-select class="interval-select" [(ngModel)]="intervalType">
         <ion-option value="hours">Hours</ion-option>
         <ion-option value="minutes">Minutes</ion-option>
@@ -42,8 +42,8 @@
       <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
     </ion-item>
   </div>
-  <ion-item>
-      <ion-textarea [(ngModel)]="description" placeholder="Add description"></ion-textarea>
+  <ion-item no-lines>
+      <ion-textarea [(ngModel)]="description" placeholder="Add description" class="description-block"></ion-textarea>
   </ion-item>
   <ion-item class="save-btn" no-lines>
     <button ion-button (click)="updateEvent()">Update</button>

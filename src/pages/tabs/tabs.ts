@@ -1,3 +1,4 @@
+import { Toasts } from './../../utility/toasts';
 import { ChangeColor } from './../../utility/colors';
 import { SortPipe } from './../../utility/sort-pipe';
 import { Component } from '@angular/core';
@@ -7,7 +8,7 @@ import { CompletedListPage } from '../completed-list/completed-list';
 
 @Component({
   templateUrl: 'tabs.html',
-  providers:[SortPipe,ChangeColor]
+  providers:[SortPipe,ChangeColor,Toasts]
 })
 export class TabsPage {
   // this tells the tabs component which Pages

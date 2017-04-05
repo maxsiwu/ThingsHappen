@@ -61,4 +61,17 @@ page-edit {
     .item{
         background-color: $light-blue !important;
     }
+
+    textarea.text-input,
+    textarea.text-input-md {
+        height: 15vh;
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .nav-close-btn {
+        font-size: 1.3em !important;
+    }
 }

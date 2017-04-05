@@ -17,7 +17,9 @@
           <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy'}}</h5>
         </span>
         <span *ngIf="_event.eventDateTime.getHours() != 0 || _event.eventDateTime.getMinutes() != 0">
-          <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy h:mm a'}}</h5>
+          <h5>
+            {{_event.eventDateTime | date: 'MMMM dd, yyyy h:mm a'}}
+          </h5>
         </span>
         <h1 item-right>
           <i  *ngIf="_event.isStarred == true" class="fa fa-star" item-right></i>

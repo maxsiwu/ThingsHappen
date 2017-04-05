@@ -67,7 +67,7 @@ export class DateFormat{
               output.unit = this.detectSingular(output.value,"Hour")
             }
           }else{
-            output.value = Math.floor(days)
+            output.value = Math.ceil(days)
             output.unit = this.detectSingular(output.value,"Day")
           }
         }else{

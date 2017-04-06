@@ -15,6 +15,7 @@ export class CreatePage {
   date:string;
   time:string;
   isrepeat:boolean;
+  isAllDay:boolean;
   intervalValue:number;
   intervalType:string;
   repeatWhenComplete:boolean;
@@ -32,10 +33,10 @@ export class CreatePage {
       this.date = '' + now.getFullYear()
               + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
               + '-' + this.dateFormat.forceTwoDigits(now.getDate());
-      // this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
-      //           + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
-      this.time = '00:00';
+      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
+                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
       this.repeatWhenComplete = true;
+      this.isAllDay = true;
   }
   ionViewWillEnter() {
 		this.populateFormFields();
@@ -52,13 +53,20 @@ export class CreatePage {
   createEvent(){
       this.storage.get('allevents').then((allevents)=>{
           var eventModel = new Event;
+          var timeInput;
           eventModel.title = this.title;
-          var timeInput = this.date+'T'+this.time+":00";
+          eventModel.isAllDay = this.isAllDay;
+          if(!this.isAllDay){
+            timeInput = this.date+'T'+this.time+":00";
+          }else{
+            timeInput = this.date+'T00:00:00';
+          }
           eventModel.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
           eventModel.isrepeat = this.isrepeat;
           eventModel.intervalValue = this.intervalValue;
           eventModel.intervalType = this.intervalType;
           eventModel.repeatWhenComplete = this.repeatWhenComplete;
+
 
           if(!allevents){
               allevents = []

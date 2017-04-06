@@ -19,29 +19,34 @@
   </ion-item>
 
   <ion-item no-lines>
-    <input [(ngModel)]="time" type="time">
+    <ion-label fixed>All Day</ion-label>
+    <ion-toggle [(ngModel)]="isAllDay"></ion-toggle>
   </ion-item>
 
-  <ion-item no-lines>
-    <ion-label fixed>Repeat</ion-label>
-    <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
-  </ion-item>
+  <div *ngIf="isAllDay == false">
+    <ion-item no-lines>
+      <input [(ngModel)]="time" type="time">
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label fixed>Repeat</ion-label>
+      <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
+    </ion-item>
 
-  <div *ngIf="isrepeat == true">
-    <ion-item no-lines>
-      <ion-label class="number-label" item-left>Every</ion-label>
-      <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
-      <ion-select class="interval-select" [(ngModel)]="intervalType">
-        <ion-option value="hours">Hours</ion-option>
-        <ion-option value="minutes">Minutes</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-label>Reset when complete</ion-label>
-      <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
-    </ion-item>
+    <div *ngIf="isrepeat == true">
+      <ion-item no-lines>
+        <ion-label class="number-label" item-left>Every</ion-label>
+        <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
+        <ion-select class="interval-select" [(ngModel)]="intervalType">
+          <ion-option value="hours">Hours</ion-option>
+          <ion-option value="minutes">Minutes</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-label>Reset when complete</ion-label>
+        <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
+      </ion-item>
+    </div>
   </div>
-  
   <ion-item class="save-btn" no-lines>
     <button ion-button (click)="updateEvent()">Create</button>
   </ion-item>

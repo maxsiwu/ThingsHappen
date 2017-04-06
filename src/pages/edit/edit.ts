@@ -26,6 +26,7 @@ export class EditPage {
   isComplete:boolean;
   isStarred:boolean;
   description:string;
+  isAllDay:boolean;
 
   constructor(params: NavParams, 
                 public navCtrl: NavController, 
@@ -45,14 +46,20 @@ export class EditPage {
   displayData(){
       var eventTimeObj = this.event.eventDateTime;
       this.title = this.event.title;
+      if(this.event.isAllDay == true || typeof(this.event.isAllDay)=='undefined'){
+        this.isAllDay = true;
+      }else{
+        this.isAllDay = false;
+      }
+      this.isrepeat = this.event.isrepeat;
       this.date = '' + eventTimeObj.getFullYear()
                   + '-' + this.dateFormat.forceTwoDigits(eventTimeObj.getMonth()+1)
                   + '-' + this.dateFormat.forceTwoDigits(eventTimeObj.getDate());
       this.time = '' + this.dateFormat.forceTwoDigits(eventTimeObj.getHours())
                   + ':' + this.dateFormat.forceTwoDigits(eventTimeObj.getMinutes());
-      this.isrepeat = this.event.isrepeat;
       this.intervalValue = this.event.intervalValue;
       this.intervalType = this.event.intervalType;
+
       if(typeof(this.event.repeatWhenComplete) == "undefined"){
         this.repeatWhenComplete = true
       }else{
@@ -71,16 +78,25 @@ export class EditPage {
   saveEditedEvent(){
       this.storage.get('allevents').then((allevents)=>{
           var changedEvent = new Event;
+          var timeInput;
           changedEvent.title = this.title;
-          var timeInput = this.date+'T'+this.time+":00";
-          changedEvent.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
-          changedEvent.isrepeat = this.isrepeat;
-          changedEvent.intervalValue = this.intervalValue;
-          changedEvent.intervalType = this.intervalType;
-          changedEvent.repeatWhenComplete = this.repeatWhenComplete;
-          changedEvent.isComplete = this.isComplete;
-          changedEvent.isStarred = this.isStarred;
-          changedEvent.description = this.description;
+          changedEvent.isAllDay = this.isAllDay;
+          // if it's all day event
+          if(this.isAllDay){
+            timeInput = this.date+'T00:00:00';
+            changedEvent.isrepeat = false;
+            changedEvent.repeatWhenComplete = true;
+          }else{
+            timeInput = this.date+'T'+this.time+":00";
+            changedEvent.isrepeat = this.isrepeat;
+            changedEvent.repeatWhenComplete = this.repeatWhenComplete;
+          }
+            changedEvent.intervalValue = this.intervalValue;
+            changedEvent.intervalType = this.intervalType;
+            changedEvent.isComplete = this.isComplete;
+            changedEvent.isStarred = this.isStarred;
+            changedEvent.description = this.description;
+            changedEvent.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
           
           this.storage.get('allevents').then((allevents) => {
               this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")

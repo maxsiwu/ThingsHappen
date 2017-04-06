@@ -41,12 +41,12 @@ export class HomePage {
 			if (allevents != null) {
 				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
         this.currentLength = 0;
-        this.colorIndex = Array(this._allevents.length)
+        this.colorIndex = Array(this._allevents.length);
         for(var i = 0; i < this._allevents.length; i++){
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
             this.colorIndex[i] = this.currentLength;
             this.currentLength++;
-						console.log(this._allevents[i].eventDateTime.getHours(), this._allevents[i].eventDateTime.getMinutes())
+						console.log(this._allevents[i].eventDateTime.getHours(), this._allevents[i].eventDateTime.getMinutes());
           }
         }
         this.colorDiff = this.changeColor.getColorDiff(this.colorCode, this.currentLength);
@@ -60,42 +60,41 @@ export class HomePage {
 
 	editEvent = (index): void => {
 		this.storage.get('allevents').then((allevents) => {
-			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-			this._oneEvent = this._allevents[index]
+			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+			this._oneEvent = this._allevents[index];
 			this.navCtrl.push(EditPage, { event: this._oneEvent, index: index });
 		})
 	}
 
 	completeEvent = (index): void => {
 		this.storage.get('allevents').then((allevents) => {
-			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-			this._oneEvent = this._allevents[index]
-			this._oneEvent.isComplete = true
-			var now = new Date()
+			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+			this._oneEvent = this._allevents[index];
+			this._oneEvent.isComplete = true;
+			var now = new Date();
+
 			//if repeat is checked
-			console.log(this._oneEvent)
 			if (typeof (this._oneEvent.intervalValue) != "undefined" &&
 				this._oneEvent.isrepeat == true) {
 				if (this._oneEvent.intervalType == "hours") {
 					if (this._oneEvent.repeatWhenComplete) {
 						this._oneEvent.eventDateTime =
 							new Date(now.getTime() +
-								this._oneEvent.intervalValue * 60 * 60 * 1000)
+								this._oneEvent.intervalValue * 60 * 60 * 1000);
 					} else {
 						var newDate = new Date(this._oneEvent.eventDateTime.getTime() +
 													this._oneEvent.intervalValue * 60 * 60 * 1000);
-						var interval = this._oneEvent.eventDateTime.getTime() - now.getTime()
+						var interval = this._oneEvent.eventDateTime.getTime() - now.getTime();
 						if(interval < 0){
 								this._oneEvent.eventDateTime = newDate;
 						}
 
 					}
 				}
-				this._oneEvent.isComplete = false
+				this._oneEvent.isComplete = false;
 			}
 
-			console.log(this._oneEvent.eventDateTime)
-			allevents[index] = this._oneEvent
+			allevents[index] = this._oneEvent;
 			this.storage.set('allevents', allevents).then(()=>{
         this.displayData();
 				this.toastCtrl.presentToast('Event Completed','middle');
@@ -104,13 +103,13 @@ export class HomePage {
 	}
 
 	getTimeLeft = (eventTime): any => {
-		return this.dateFormat.getTimeLeft(eventTime)
+		return this.dateFormat.getTimeLeft(eventTime);
 	}
 
 	goToDetails = (index): void => {
 		this.storage.get('allevents').then((allevents) => {
-			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-			this._oneEvent = this._allevents[index]
+			this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+			this._oneEvent = this._allevents[index];
 			this.navCtrl.push(DetailPage, { event: this._oneEvent, index: index });
 		})
 	}

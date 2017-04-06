@@ -10,6 +10,7 @@ export class Event {
     repeatWhenComplete:boolean;
     isStarred:boolean;
     isComplete:boolean;
+    isAllDay:boolean;
     description:string;
 
     constructor(){

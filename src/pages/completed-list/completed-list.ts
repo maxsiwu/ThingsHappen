@@ -127,4 +127,45 @@ export class CompletedListPage {
     });
     confirm.present();
   }
+
+  deleteAllUnstarred(){
+    console.log('clicked');
+      let confirm = this.alertCtrl.create({
+      title: 'Delete all unstarred events?',
+      message: 'Once deleted, this action cannot be reversed.',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.deleteAll();
+            this.toastCtrl.presentToast('Events deleted','middle');
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+            console.log('No clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  deleteAll(){
+		this.storage.get('allevents').then((allevents) => {
+
+			if (allevents != null) {
+				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+        // this.storage.set('allevents', this._allevents);
+        for(var i = 0; i < this._allevents.length; i++){
+          if(this._allevents[i].isComplete && !this._allevents[i].isStarred){
+            this._allevents.splice(i, 1);
+            i--;
+          }
+        }
+        this.storage.set('allevents', this._allevents).then(()=>{this.displayData()});
+			}
+		});
+  }
 }

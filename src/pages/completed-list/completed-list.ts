@@ -91,7 +91,19 @@ export class CompletedListPage {
       this.navCtrl.push(DetailPage, { event: this._oneEvent, index: index });
     })
   }
-
+  toggleStatus = (index):void => {
+    this.storage.get('allevents').then((allevents) => {
+      this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime");
+      this._oneEvent = this._allevents[index];
+      if(this._oneEvent.isStarred != true){
+        this._oneEvent.isStarred = true;
+      }else{
+        this._oneEvent.isStarred = false;
+      }
+      allevents[index] = this._oneEvent;
+      this.storage.set('allevents',allevents);
+    })
+	}
   showDeleteAlert(index) {
     let confirm = this.alertCtrl.create({
       title: 'Delete the event?',

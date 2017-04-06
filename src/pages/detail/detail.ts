@@ -5,7 +5,7 @@ import { SortPipe } from './../../utility/sort-pipe';
 import { Event } from './../../models/event';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DateFormat } from './../../utility/date-format';
 
 @Component({selector: 'page-detail',templateUrl: 'detail.html',providers: [DateFormat,SortPipe]})
@@ -15,7 +15,12 @@ export class DetailPage {
   event;
   index;
 
-  constructor(params: NavParams, public sortBy:SortPipe, public storage:Storage, public dateFormat:DateFormat, public navCtrl:NavController) {
+  constructor(params: NavParams, 
+              public sortBy:SortPipe, 
+              public storage:Storage, 
+              public dateFormat:DateFormat, 
+              public navCtrl:NavController,
+              public alertCtrl:AlertController) {
     this.event = params.data.event;
     this.index = params.data.index;
   }
@@ -61,5 +66,26 @@ export class DetailPage {
   }
   goBack(){
     this.navCtrl.pop();
+  }
+  showDeleteAlert(index) {
+    let confirm = this.alertCtrl.create({
+    title: 'Delete the event?',
+    message: 'Once deleted, this action cannot be reversed.',
+    buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+              this.deleteEvent();
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+              console.log('No clicked');
+          }
+        }
+    ]
+    });
+    confirm.present();
   }
 }

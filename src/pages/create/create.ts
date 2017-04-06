@@ -32,8 +32,9 @@ export class CreatePage {
       this.date = '' + now.getFullYear()
               + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
               + '-' + this.dateFormat.forceTwoDigits(now.getDate());
-      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
-                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
+      // this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
+      //           + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
+      this.time = '00:00';
       this.repeatWhenComplete = true;
   }
   ionViewWillEnter() {

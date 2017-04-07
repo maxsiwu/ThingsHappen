@@ -16,12 +16,13 @@ import { DateFormat } from './../../utility/date-format';
 })
 
 export class HomePage {
-	_allevents: [Event]
-	_oneEvent: Event
-  colorDiff: number
-  colorCode: string
-  currentLength: number
-  colorIndex: Array<number>
+	_allevents: [Event];
+	_oneEvent: Event;
+  colorDiff: number;
+  colorCode: string;
+  currentLength: number;
+  colorIndex: Array<number>;
+	
 	constructor(public navCtrl: NavController,
               public storage: Storage,
               public sortBy: SortPipe,

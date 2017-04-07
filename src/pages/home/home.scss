@@ -14,5 +14,9 @@ page-home {
     .list-md ion-item-options {
         border-bottom: none !important;
     }
+    h2 {
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+    }
 }
 

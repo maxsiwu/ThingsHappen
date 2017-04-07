@@ -11,9 +11,9 @@ import { DateFormat } from './../../utility/date-format';
 @Component({selector: 'page-detail',templateUrl: 'detail.html',providers: [DateFormat,SortPipe]})
 
 export class DetailPage {
-  _allevents;
-  event;
-  index;
+  _allevents:[Event];
+  event:Event;
+  index:number;
 
   constructor(params: NavParams, 
               public sortBy:SortPipe, 

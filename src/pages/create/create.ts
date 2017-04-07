@@ -1,9 +1,10 @@
+import { Toasts } from './../../utility/toasts';
 import { HomePage } from './../home/home';
 import { DateFormat } from './../../utility/date-format';
 import { Event } from './../../models/event';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-create',
@@ -22,7 +23,9 @@ export class CreatePage {
 
   constructor(public navCtrl: NavController,
               public storage:Storage,
-              public dateFormat:DateFormat) {
+              public dateFormat:DateFormat,
+              public alertCtrl:AlertController,
+              public toastCtrl:Toasts) {
     //this.storage.clear();
     this.populateFormFields();
   }
@@ -48,7 +51,6 @@ export class CreatePage {
 
   updateEvent(){
 	  this.validation();
-	  this.createEvent();
   }
   createEvent(){
       this.storage.get('allevents').then((allevents)=>{
@@ -66,8 +68,6 @@ export class CreatePage {
           eventModel.intervalValue = this.intervalValue;
           eventModel.intervalType = this.intervalType;
           eventModel.repeatWhenComplete = this.repeatWhenComplete;
-
-
           if(!allevents){
               allevents = []
           }
@@ -78,19 +78,48 @@ export class CreatePage {
       });
   }
 
-  validation(){
-      var state = true;
-      console.log(this.date)
-      // var errors = [];
-      if (typeof(this.time) == 'undefined'){
-          this.time = '00:00';
-      }
-      if (typeof(this.date) == 'undefined'){
-        var now = new Date()
-        this.date = '' + now.getFullYear() + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1) + '-' + this.dateFormat.forceTwoDigits(now.getDate());
-      }
-      return state;
-  }
+    validation(){
+        var isFormValid = true;
+        if(this.isrepeat && !this.repeatWhenComplete){
+            this.toastCtrl.presentToast('This event will repeat regardless of your action','middle');
+        }
+        if(this.isrepeat && (Math.floor(this.intervalValue) == 0 || typeof(this.intervalValue)=='undefined')){
+            isFormValid = false;
+            this.showCreateAlert("repeat number","Number field is left empty.");
+        }
+        if (this.isAllDay == false && (typeof(this.time) == 'undefined'|| this.time == '')){
+            isFormValid = false;
+            this.showCreateAlert('time','Time has not been entered for a repeat event.');
+        }
+        if (typeof(this.date) == 'undefined'|| this.date == ''|| this.date == 'yyyy-mm-dd'){
+            isFormValid = false;
+            this.showCreateAlert('date','Date cannot be empty.');
+        }
+        if(typeof(this.title) == 'undefined' || this.title.trim() == ''){
+            isFormValid = false;
+            this.showCreateAlert('title','Title cannot be empty.');
+        }
+        if(!isFormValid){
+            console.log('form not valid');
+        }else{
+            this.createEvent();
+        }
+    }
+    showCreateAlert(errTitle, errMsg) {
+        let confirm = this.alertCtrl.create({
+        title: 'Must enter event ' + errTitle,
+        message: 'Cannot save: ' + errMsg,
+        buttons: [
+            {
+                text: 'Got it.',
+                handler: () => {
+                    console.log('not valid');
+                }
+            }
+        ]
+        });
+        confirm.present();
+    } 
   goToHomePage(){
     this.navCtrl.parent.select(0);
   }

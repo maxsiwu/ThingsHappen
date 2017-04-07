@@ -1,3 +1,4 @@
+import { ReplaceLongTitle } from './../components/replace-long-title/replace-long-title';
 import { EditPage } from './../pages/edit/edit';
 import { DetailPage } from './../pages/detail/detail';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -20,7 +21,8 @@ import { Storage } from '@ionic/storage';
     HomePage,
     TabsPage,
     DetailPage,
-    EditPage
+    EditPage,
+    ReplaceLongTitle
   ],
   imports: [
     IonicModule.forRoot(MyApp),

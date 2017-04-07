@@ -13,4 +13,9 @@ page-completed-list {
     .list-md ion-item-options {
         border: none !important;
     }
+    h2 {
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+    }
+
 }

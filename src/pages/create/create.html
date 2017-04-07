@@ -8,32 +8,32 @@
 </ion-header>
 
 <ion-content padding class="create-content">
-<ion-list>
+<ion-list no-lines>
 
-  <ion-item no-lines>
+  <ion-item>
     <input [(ngModel)]="title" type="text" placeholder="Title">
   </ion-item>
 
-  <ion-item no-lines>
+  <ion-item>
     <input [(ngModel)]="date" type="date">
   </ion-item>
 
-  <ion-item no-lines>
+  <ion-item>
     <ion-label fixed>All Day</ion-label>
     <ion-toggle [(ngModel)]="isAllDay"></ion-toggle>
   </ion-item>
 
-  <div *ngIf="isAllDay == false">
-    <ion-item no-lines>
+  <div *ngIf="isAllDay == false" [@animate]='isAllDay' class="hidden-one">
+    <ion-item [@animate]='isAllDay'>
       <input [(ngModel)]="time" type="time">
     </ion-item>
-    <ion-item no-lines>
+    <ion-item [@animate]='isAllDay'>
       <ion-label fixed>Repeat</ion-label>
       <ion-toggle [(ngModel)]="isrepeat" checked="false"></ion-toggle>
     </ion-item>
 
-    <div *ngIf="isrepeat == true">
-      <ion-item no-lines>
+    <div *ngIf="isrepeat == true" [@animate]='isrepeat'>
+      <ion-item [@animate]='isrepeat'>
         <ion-label class="number-label" item-left>Every</ion-label>
         <ion-input class="number-input" [(ngModel)]="intervalValue" type="number" min="0" inputmode="numeric" pattern="[0-9]*"></ion-input>
         <ion-select class="interval-select" [(ngModel)]="intervalType">
@@ -41,13 +41,13 @@
           <ion-option value="minutes">Minutes</ion-option>
         </ion-select>
       </ion-item>
-      <ion-item no-lines>
+      <ion-item [@animate]='isrepeat'>
         <ion-label>Reset when complete</ion-label>
         <ion-toggle [(ngModel)]="repeatWhenComplete" item-bottom></ion-toggle>
       </ion-item>
     </div>
   </div>
-  <ion-item class="save-btn" no-lines>
+  <ion-item class="save-btn">
     <button ion-button (click)="updateEvent()">Create</button>
   </ion-item>
 </ion-list>

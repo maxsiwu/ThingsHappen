@@ -17,5 +17,11 @@ page-completed-list {
         overflow: hidden;
         text-overflow: ellipsis !important;
     }
-
+    .fab ion-icon {
+        font-size: 3em !important;
+    }
+    .fab,
+    .fab-md {
+        box-shadow: 3px 3px 5px $tab-bar-color;
+    }
 }

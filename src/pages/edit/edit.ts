@@ -6,11 +6,24 @@ import { Event } from './../../models/event';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import {style, state, animate, transition, trigger} from '@angular/core';
+import 'web-animations-js/web-animations.min';
 
 @Component({
     selector: 'page-edit',
     templateUrl: 'edit.html',
-    providers:[DateFormat, SortPipe, Toasts]
+    providers:[DateFormat, SortPipe, Toasts],
+    animations: [
+        trigger('animate', [
+        transition(':enter', [   // :enter is alias to 'void => *'
+            style({height:0, opacity: 0}),
+            animate(200, style({height:'*', opacity: 1})) 
+        ]),
+        transition(':leave', [   // :leave is alias to '* => void'
+            animate(200, style({height:0, opacity:0})) 
+        ])
+        ])
+    ]
 })
 export class EditPage {
     allevents:[Event];

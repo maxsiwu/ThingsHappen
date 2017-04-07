@@ -71,6 +71,8 @@ page-detail {
     }
     h1 {
         @include display-font;
+        overflow: hidden;
+        text-overflow: ellipsis !important;
     }
 
     button {

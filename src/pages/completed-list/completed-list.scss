@@ -4,13 +4,14 @@ page-completed-list {
         font-size: 2em;
     }
     .record-content{
-        background-color: $light-blue;
+        @include star-inverse-bg;
     }
     .item-md,
     .item {
         border: none !important;
     }
-    .list-md ion-item-options {
+    .list-md,
+    .list ion-item-options {
         border: none !important;
     }
     h2 {

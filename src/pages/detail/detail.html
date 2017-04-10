@@ -35,7 +35,7 @@
             <i class="fa fa-trash"></i>
           </button>
         </ion-row>
-        <span *ngIf="event.description">
+        <span *ngIf="event.description" class="event-notes">
           <h3>Notes:</h3>
           <ion-scroll scrollY="true" >
             <pre>{{event.description}}</pre>

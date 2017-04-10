@@ -26,11 +26,17 @@ export class DetailPage {
   }
 
 	ionViewWillEnter() {
+    this.refreshDetails();
+	}
+  ionViewDidEnter() {
+    this.refreshDetails();
+	}
+  refreshDetails(){
     this.storage.get('allevents').then((allevents) => {
       this._allevents = this.sortBy.sortByDate(allevents,"eventDateTime");
       this.event = this._allevents[this.index];
     })
-	}
+  }
 
   getTimeLeft = (eventTime):any => {
     return this.dateFormat.getTimeLeft(eventTime);

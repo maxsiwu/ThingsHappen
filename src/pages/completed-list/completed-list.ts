@@ -31,11 +31,14 @@ export class CompletedListPage {
               public changeColor:ChangeColor,
               public alertCtrl: AlertController,
               public toastCtrl: Toasts) {
-    //this.storage.clear();
     this.colorCode = "#8388af";
   }
 
   ionViewWillEnter() {
+    this.displayData();
+  }
+
+  ionViewDidEnter() {
     this.displayData();
   }
 

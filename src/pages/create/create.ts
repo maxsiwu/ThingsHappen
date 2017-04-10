@@ -45,18 +45,23 @@ export class CreatePage {
     this.populateFormFields();
   }
   populateFormFields(){
+    const INTERVAL_TYPE_ONE:string = "hours";
+    const INTERVAL_VALUE_DEFAULT:number= 4;
     var now = new Date();
+
     this.title = "";
-    this.intervalType = "hours";
-      this.date = '' + now.getFullYear() + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
-              + '-' + this.dateFormat.forceTwoDigits(now.getDate());
-      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours()) + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
-      this.repeatWhenComplete = true;
-      this.isAllDay = true;
-      //this.hasAlert = false;
+    this.intervalType = INTERVAL_TYPE_ONE;
+    this.date = '' + now.getFullYear() + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
+            + '-' + this.dateFormat.forceTwoDigits(now.getDate());
+    this.time = '' + this.dateFormat.forceTwoDigits(now.getHours()) + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
+    this.repeatWhenComplete = true;
+    this.isrepeat = false;
+    this.intervalValue = INTERVAL_VALUE_DEFAULT;
+    this.isAllDay = true;
+    //this.hasAlert = false;
   }
   ionViewWillEnter() {
-		this.populateFormFields();
+    this.populateFormFields();
 	}
 
   ionViewWillLeave(){
@@ -64,34 +69,34 @@ export class CreatePage {
   }
 
   updateEvent(){
-	  this.validation();
+    this.validation();
   }
   createEvent(){
-      this.storage.get('allevents').then((allevents)=>{
-          var eventModel = new Event;
-          var timeInput;
-          eventModel.title = this.title;
-          eventModel.isAllDay = this.isAllDay;
-          if(!this.isAllDay){
-            timeInput = this.date+'T'+this.time+":00";
-          }else{
-            timeInput = this.date+'T00:00:00';
-          }
-          eventModel.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
-          eventModel.isrepeat = this.isrepeat;
-          eventModel.intervalValue = this.intervalValue;
-          eventModel.intervalType = this.intervalType;
-          eventModel.repeatWhenComplete = this.repeatWhenComplete;
-          //eventModel.hasAlert = this.hasAlert;
+    this.storage.get('allevents').then((allevents)=>{
+        var eventModel = new Event;
+        var timeInput;
+        eventModel.title = this.title;
+        eventModel.isAllDay = this.isAllDay;
+        if(!this.isAllDay){
+        timeInput = this.date+'T'+this.time+":00";
+        }else{
+        timeInput = this.date+'T00:00:00';
+        }
+        eventModel.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
+        eventModel.isrepeat = this.isrepeat;
+        eventModel.intervalValue = this.intervalValue;
+        eventModel.intervalType = this.intervalType;
+        eventModel.repeatWhenComplete = this.repeatWhenComplete;
+        //eventModel.hasAlert = this.hasAlert;
 
-          if(!allevents){
-              allevents = []
-          }
-          allevents.push(eventModel);
-          this.storage.set('allevents',allevents).then(()=>{
-            this.goToHomePage();
-          });
-      });
+        if(!allevents){
+            allevents = [];
+        }
+        allevents.push(eventModel);
+        this.storage.set('allevents',allevents).then(()=>{
+        this.goToHomePage();
+        });
+    });
   }
 
     validation(){

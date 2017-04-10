@@ -58,6 +58,10 @@ export class EditPage {
         this.displayData();
     }
 
+    ionViewWillLeave(){
+        this.displayData();
+    }
+
     displayData(){
         var eventTimeObj = this.event.eventDateTime;
         this.title = this.event.title;

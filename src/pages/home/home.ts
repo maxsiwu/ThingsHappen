@@ -41,6 +41,10 @@ export class HomePage {
 	ionViewWillEnter() {
 		this.displayData();
 	}
+
+	ionViewDidEnter() {
+		this.displayData();
+	}
 	displayData() {
 		this.storage.get('allevents').then((allevents) => {
 
@@ -52,7 +56,6 @@ export class HomePage {
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
             this.colorIndex[i] = this.currentLength;
             this.currentLength++;
-						console.log(this._allevents[i].eventDateTime.getHours(), this._allevents[i].eventDateTime.getMinutes());
           }
         }
         this.colorDiff = this.changeColor.getColorDiff(this.colorCode, this.currentLength);
@@ -94,7 +97,20 @@ export class HomePage {
 						if(interval < 0){
 								this._oneEvent.eventDateTime = newDate;
 						}
-
+					}
+				}else{
+					// if it's repeating days
+					if (this._oneEvent.repeatWhenComplete) {
+						this._oneEvent.eventDateTime =
+							new Date(now.getTime() +
+								this._oneEvent.intervalValue * 60 * 60 * 1000 * 24);
+					} else {
+						var newDate = new Date(this._oneEvent.eventDateTime.getTime() +
+													this._oneEvent.intervalValue * 60 * 60 * 1000 * 24);
+						var interval = this._oneEvent.eventDateTime.getTime() - now.getTime();
+						if(interval < 0){
+								this._oneEvent.eventDateTime = newDate;
+						}
 					}
 				}
 				this._oneEvent.isComplete = false;

@@ -40,6 +40,7 @@ export class EditPage {
     isStarred:boolean;
     description:string;
     isAllDay:boolean;
+    //hasAlert:boolean;
 
     constructor(params: NavParams,
                 public navCtrl: NavController,
@@ -73,6 +74,7 @@ export class EditPage {
                     + ':' + this.dateFormat.forceTwoDigits(eventTimeObj.getMinutes());
         this.intervalValue = this.event.intervalValue;
         this.intervalType = this.event.intervalType;
+        //this.hasAlert = this.event.hasAlert;
 
         if(typeof(this.event.repeatWhenComplete) == "undefined"){
             this.repeatWhenComplete = true
@@ -96,20 +98,21 @@ export class EditPage {
             changedEvent.isAllDay = this.isAllDay;
             // check if it's all day event
             if(this.isAllDay){
-            timeInput = this.date+'T00:00:00';
-            changedEvent.isrepeat = false;
-            changedEvent.repeatWhenComplete = true;
+                timeInput = this.date+'T00:00:00';
+                changedEvent.isrepeat = false;
+                changedEvent.repeatWhenComplete = true;
             }else{
-            timeInput = this.date+'T'+this.time+":00";
-            changedEvent.isrepeat = this.isrepeat;
-            changedEvent.repeatWhenComplete = this.repeatWhenComplete;
+                timeInput = this.date+'T'+this.time+":00";
+                changedEvent.isrepeat = this.isrepeat;
+                changedEvent.repeatWhenComplete = this.repeatWhenComplete;
             }
             changedEvent.intervalValue = this.intervalValue;
             changedEvent.intervalType = this.intervalType;
             changedEvent.isComplete = this.isComplete;
             changedEvent.isStarred = this.isStarred;
             changedEvent.description = this.description;
-            changedEvent.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
+            changedEvent.eventDateTime = new Date(timeInput + this.dateFormat.getOffset());
+            //changedEvent.hasAlert = this.hasAlert;
 
             this.storage.get('allevents').then((allevents) => {
                 this.allevents = this.sortBy.sortByDate(allevents,"eventDateTime")

@@ -34,6 +34,7 @@ export class CreatePage {
   intervalValue:number;
   intervalType:string;
   repeatWhenComplete:boolean;
+  //hasAlert:boolean;
 
   constructor(public navCtrl: NavController,
               public storage:Storage,
@@ -47,13 +48,12 @@ export class CreatePage {
     var now = new Date();
     this.title = "";
     this.intervalType = "hours";
-      this.date = '' + now.getFullYear()
-              + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
+      this.date = '' + now.getFullYear() + '-' + this.dateFormat.forceTwoDigits(now.getMonth()+1)
               + '-' + this.dateFormat.forceTwoDigits(now.getDate());
-      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours())
-                + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
+      this.time = '' + this.dateFormat.forceTwoDigits(now.getHours()) + ':' + this.dateFormat.forceTwoDigits(now.getMinutes());
       this.repeatWhenComplete = true;
       this.isAllDay = true;
+      //this.hasAlert = false;
   }
   ionViewWillEnter() {
 		this.populateFormFields();
@@ -82,6 +82,8 @@ export class CreatePage {
           eventModel.intervalValue = this.intervalValue;
           eventModel.intervalType = this.intervalType;
           eventModel.repeatWhenComplete = this.repeatWhenComplete;
+          //eventModel.hasAlert = this.hasAlert;
+
           if(!allevents){
               allevents = []
           }

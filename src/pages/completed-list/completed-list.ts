@@ -138,7 +138,6 @@ export class CompletedListPage {
           text: 'Yes',
           handler: () => {
             this.deleteAll();
-            this.toastCtrl.presentToast('Events deleted','middle');
           }
         },
         {
@@ -154,7 +153,7 @@ export class CompletedListPage {
 
   deleteAll(){
 		this.storage.get('allevents').then((allevents) => {
-
+      var x = 0;
 			if (allevents != null) {
 				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
         // this.storage.set('allevents', this._allevents);
@@ -162,10 +161,19 @@ export class CompletedListPage {
           if(this._allevents[i].isComplete && !this._allevents[i].isStarred){
             this._allevents.splice(i, 1);
             i--;
+            x++;
           }
         }
         this.storage.set('allevents', this._allevents).then(()=>{this.displayData()});
-			}
+        // check if any unstarred events exist
+        if (x != 0){
+          this.toastCtrl.presentToast('Events deleted','middle');
+        }else{
+          this.toastCtrl.presentToast('No unstarred events','middle');
+        }
+			}else{
+        this.toastCtrl.presentToast('No events to be deleted','middle');
+      }
 		});
   }
 }

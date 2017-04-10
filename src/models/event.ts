@@ -12,6 +12,7 @@ export class Event {
     isComplete:boolean;
     isAllDay:boolean;
     description:string;
+    hasAlert:boolean;
 
     constructor(){
         // setting default values

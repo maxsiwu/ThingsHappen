@@ -22,15 +22,20 @@ export class HomePage {
   colorCode: string;
   currentLength: number;
   colorIndex: Array<number>;
-	
+  pushMessage: string = "some message being pushed";
+
 	constructor(public navCtrl: NavController,
               public storage: Storage,
               public sortBy: SortPipe,
               public dateFormat: DateFormat,
               public changeColor:ChangeColor,
-							public toastCtrl: Toasts) {
+							public toastCtrl: Toasts,
+							params:NavParams) {
 		//this.storage.clear();
     this.colorCode = "#8388af";
+		// if(params.data.message){
+    //   this.pushMessage = params.data.message;
+    // }
 	}
 
 	ionViewWillEnter() {

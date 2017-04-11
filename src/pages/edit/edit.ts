@@ -130,7 +130,7 @@ export class EditPage {
     validation(){
         var isFormValid = true;
         if(this.isrepeat && !this.repeatWhenComplete){
-            this.toastCtrl.presentToast('This event will repeat regardless of your action','middle');
+            this.toastCtrl.presentToast('This event will repeat regardless of your action','center');
         }
         if(this.isrepeat && (Math.floor(this.intervalValue) == 0 || typeof(this.intervalValue)=='undefined')){
             isFormValid = false;

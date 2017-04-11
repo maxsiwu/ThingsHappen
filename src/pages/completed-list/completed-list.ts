@@ -116,7 +116,7 @@ export class CompletedListPage {
           text: 'Yes',
           handler: () => {
             this.deleteEvent(index);
-            this.toastCtrl.presentToast('Event deleted','middle');
+            this.toastCtrl.presentToast('Event deleted','center');
             this.displayData();
           }
         },
@@ -170,12 +170,12 @@ export class CompletedListPage {
         this.storage.set('allevents', this._allevents).then(()=>{this.displayData()});
         // check if any unstarred events exist
         if (x != 0){
-          this.toastCtrl.presentToast('Events deleted','middle');
+          this.toastCtrl.presentToast('Events deleted','center');
         }else{
-          this.toastCtrl.presentToast('No unstarred events','middle');
+          this.toastCtrl.presentToast('No unstarred events','center');
         }
 			}else{
-        this.toastCtrl.presentToast('No events to be deleted','middle');
+        this.toastCtrl.presentToast('No events to be deleted','center');
       }
 		});
   }

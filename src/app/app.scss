@@ -40,7 +40,8 @@ h2 {
 
 //---for tab bar---
 .tabbar{
-    background-color: $tab-bar-color !important;
+    background-color: $light-purple !important;
+    border-top: 1px solid white;
     min-height: 60px;
 }
 
@@ -97,11 +98,16 @@ h2 {
 }
 
 // for toast
-
+.toast-wrapper{
+    background-color: transparent !important;
+    text-align: center;
+    margin-left: 10% !important;
+}
 .toast-message {
     color: black !important;
     background-color: $light-grey;
     border: 2px solid $light-purple;
-    margin: 0 auto;
+    border-radius: 10px !important;
+    
 }
 

@@ -14,7 +14,6 @@ import 'web-animations-js/web-animations.min';
   providers:[DateFormat, HomePage],
   animations: [
     trigger('animate', [
-      
       transition(':enter', [   // :enter is alias to 'void => *'
         style({height:0, opacity: 0}),
         animate(200, style({height:'*', opacity: 1})) 

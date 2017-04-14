@@ -1,12 +1,11 @@
 import { Toasts } from './../../utility/toasts';
-import { DetailPage } from './../detail/detail';
 import { SortPipe } from './../../utility/sort-pipe';
 import { DateFormat } from './../../utility/date-format';
 import { Event } from './../../models/event';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import {style, state, animate, transition, trigger} from '@angular/core';
+import {style, animate, transition, trigger} from '@angular/core';
 import 'web-animations-js/web-animations.min';
 
 @Component({

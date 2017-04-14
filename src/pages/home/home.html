@@ -4,13 +4,17 @@
       <i class="fa fa-clock-o" aria-hidden="true"></i>
        What's Next
     </ion-title>
+    <ion-buttons right>
+      <tutorial-btn></tutorial-btn>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content fullscreen class="list-content">
+<ion-content fullscreen class="list-content" >
+<!--(ionScroll)="scrollAnimation()" (click)="scrollAnimation()"-->
   <ion-list no-lines>
     <div *ngFor="let _event of _allevents; let i = index">
-    <ion-item-sliding id="event{{i}}" class="single-event" *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
+    <ion-item-sliding  style="direction:ltr" id="event{{i}}" class="single-event" *ngIf="_event.isComplete != true" [ngStyle]="{'background-color': showBgColor(i)}">
       <button ion-item (tap)="goToDetails(i)" (press)="toggleStatus(i)" [ngStyle]="{'background-color': showBgColor(i)}" detail-none no-lines>
         <h2>{{_event.title}}</h2>
         <span *ngIf="_event.isAllDay == true">
@@ -31,14 +35,14 @@
           <h5 *ngIf="_event.eventDateTime">{{getTimeLeft(_event.eventDateTime).unit}}</h5>
         </span>
       </button>
-      <ion-item-options side="left">
-        <button ion-button (click)="editEvent(i)" color="edit-color">
-          <i class="fa fa-pencil-square-o slide-icon" aria-hidden="true"></i>
-        </button>
-      </ion-item-options>
       <ion-item-options side="right">
         <button ion-button (click)="completeEvent(i)" color="complete-color">
           <i class="fa fa-check slide-icon" aria-hidden="true"></i>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button (click)="editEvent(i)" color="edit-color">
+          <i class="fa fa-pencil-square-o slide-icon" aria-hidden="true"></i>
         </button>
       </ion-item-options>
     </ion-item-sliding>

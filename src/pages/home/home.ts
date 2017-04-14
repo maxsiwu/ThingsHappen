@@ -8,12 +8,22 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { DateFormat } from './../../utility/date-format';
-import 'web-animations-js/web-animations.min';
+
+// import {style, state, animate, transition, trigger} from '@angular/core';
+// import 'web-animations-js/web-animations.min';
 
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
 	providers: [SortPipe, DateFormat,Toasts]
+	// animations: [
+  //   trigger('popup', [
+	// 		state("onScreen", style({ width: "100%" })),
+	// 		state("offScreen", style({ width: "50%" })),
+	// 		transition("onScreen => offScreen", animate(500)),
+	// 		transition("offScreen => onScreen", animate(500)),
+  //   ])
+  // ]
 })
 
 export class HomePage {
@@ -24,10 +34,9 @@ export class HomePage {
   colorCode:string;
   currentLength:number;
   colorIndex:Array<number>;
-	scrollerHandle;
-	isScrollBottom:string;
+	//onScreen:Array<string>;
   //pushMessage: string = "some message being pushed";
-
+	
 	constructor(public navCtrl: NavController,
               public storage: Storage,
               public sortBy: SortPipe,
@@ -37,7 +46,6 @@ export class HomePage {
 							public element: ElementRef,
 							params:NavParams) {
     this.colorCode = "#8388af";
-		this.isScrollBottom = 'notBottom';
 	}
 
 	ionViewWillEnter() {
@@ -48,26 +56,25 @@ export class HomePage {
 		this.displayData();
 	}
 
-	ngAfterViewInit() {
-		this.scrollerHandle = this.element.nativeElement.children[1].children[1];
-		console.log(this.scrollerHandle);
-    this.scrollerHandle.addEventListener("scroll", (event) => {
-        this.scrollAnimation(event);
-    });
-	}
+	// ngAfterViewInit() {
+	// 	this.content.enableScrollListener();
+	// 	this.scrollerHandle = this.element.nativeElement.children[1].children[1];
+	// }
 
-	scrollAnimation(event) {
-		// var scrollTop = event.target.scrollTop;
-		// var scrollBarBtm = scrollTop + window.innerHeight;
-		// for(var i = 0; i<this.currentLength;i++){
-		// 	var element = document.getElementById("event"+i.toString());
-		// 	if (element.getBoundingClientRect().bottom > scrollBarBtm){
-		// 		element.classList.remove("popup");
-		// 	}else{
-		// 		element.classList.add("popup");
-		// 	}
-		// }
-	}
+	// scrollAnimation() {
+	// 	console.log(this.onScreen);
+	// 	var scrollTop = this.content.scrollTop.valueOf();
+	// 	var scrollBarBtm = scrollTop + window.innerHeight;
+	// 	for(var i = 0; i<this.currentLength;i++){
+	// 		var element = document.getElementById("event"+i.toString());
+	// 		if (element.getBoundingClientRect().bottom > scrollBarBtm 
+	// 		){
+	// 			this.onScreen[i] = 'offScreen';
+	// 		}else{
+	// 			this.onScreen[i] = 'onScreen';
+	// 		}
+	// 	}
+	// }
 
 	displayData() {
 		this.storage.get('allevents').then((allevents) => {
@@ -76,7 +83,9 @@ export class HomePage {
 				this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
         this.currentLength = 0;
         this.colorIndex = Array(this._allevents.length);
+				//this.onScreen = Array(this._allevents.length);
         for(var i = 0; i < this._allevents.length; i++){
+					//this.onScreen[i] = 'offScreen';
           if((typeof(this._allevents[i].isComplete) == "undefined") || (!this._allevents[i].isComplete)){
             this.colorIndex[i] = this.currentLength;
             this.currentLength++;

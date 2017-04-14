@@ -5,7 +5,7 @@ import { Event } from './../../models/event';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController, AlertController } from 'ionic-angular';
-import {style, state, animate, transition, trigger} from '@angular/core';
+import {style, animate, transition, trigger} from '@angular/core';
 import 'web-animations-js/web-animations.min';
 
 @Component({

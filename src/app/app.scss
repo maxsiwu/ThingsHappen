@@ -29,7 +29,7 @@ h2 {
 }
 
 .opaque .toolbar-background {
-    background-color: rgba(52, 55, 89, 0.7);
+    background-color: rgba(66, 66, 66, 0.7);
 }
 
 .nav-close-btn{
@@ -108,6 +108,15 @@ h2 {
     background-color: $light-grey;
     border: 2px solid $light-purple;
     border-radius: 10px !important;
-    
 }
 
+// tutorial button
+.tutorial-button{
+    color: #777777;
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.bar-buttons button {
+    margin-right: 20px;
+}

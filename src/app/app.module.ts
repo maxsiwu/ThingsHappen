@@ -1,4 +1,5 @@
-import { ReplaceLongTitle } from './../components/replace-long-title/replace-long-title';
+import { IntroPage } from './../pages/intro/intro';
+import { TutorialBtn } from './../components/tutorial-btn/tutorial-btn';
 import { EditPage } from './../pages/edit/edit';
 import { DetailPage } from './../pages/detail/detail';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -22,7 +23,8 @@ import { Storage } from '@ionic/storage';
     TabsPage,
     DetailPage,
     EditPage,
-    ReplaceLongTitle
+    TutorialBtn,
+    IntroPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -30,7 +32,6 @@ import { Storage } from '@ionic/storage';
         name: '__mydb',
         driverOrder: ['indexeddb', 'sqlite', 'websql']
    })
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +41,9 @@ import { Storage } from '@ionic/storage';
     HomePage,
     TabsPage,
     DetailPage,
-    EditPage
+    EditPage,
+    IntroPage,
+    TutorialBtn
   ],
   providers: [
     StatusBar,

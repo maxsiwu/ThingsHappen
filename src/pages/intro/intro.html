@@ -1,17 +1,15 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar hideBackButton class="tutorial-nav">
     <ion-title>Tutorial</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content class="tutorial-page">
   <ion-slides pager>
     <ion-slide *ngFor="let slide of slides">
       <ion-toolbar>
-        <ion-buttons end>
-          <button ion-button >Skip</button>
+        <ion-buttons (click)="closeTutorial()" end>
+          <button ion-button>Skip</button>
         </ion-buttons>
       </ion-toolbar>
       <img [src]="slide.image" class="slide-image"/>
@@ -22,11 +20,10 @@
       <ion-toolbar>
       </ion-toolbar>
       <img src="assets/images/slidebox-img-4.png" class="slide-image"/>
-      <h2 class="slide-title">Start Adding Event!</h2>
-      <p>Discover Hidden features and more ... </p>
-      <button ion-button large clear icon-right color="baby-purple">
+      <h2 class="slide-title">Get Ready for More</h2>
+      <p>Discover Hidden features and go! </p>
+      <button (click)="closeTutorial()" ion-button large clear icon-right color="baby-purple">
         Continue
-        <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-slide>
   </ion-slides>

@@ -1,5 +1,6 @@
 page-intro {
     @include display-font;
+
     h2 {
         @include display-font;
         color:$tab-bar-color;
@@ -8,19 +9,24 @@ page-intro {
         background: rgba(255,255,255, 0.8);
         border-color: transparent;
     }
-
+    .close-btn {
+        font-size: 46px;
+    }
     .slide-zoom {
         height: 100%;
+        button {
+            height: 1.6em;
+        }
     }
 
     .slide-title {
-        margin-top: 2.8rem;
+        margin-top: 1.2rem;
     }
 
     .slide-image {
         max-height: 50%;
         max-width: 60%;
-        margin: 18px 0;
+        margin: 18px 0 0;
     }
 
     b {

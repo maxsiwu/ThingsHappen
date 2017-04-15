@@ -14,13 +14,13 @@ export class IntroPage {
       image: "assets/images/slidebox-img-1.png",
     },
     {
-      title: "Add an Event",
-      description: "Simply click plus sign to add new event",
+      title: "Individual Lists",
+      description: "Separate Lists for upcoming events and archived events",
       image: "assets/images/slidebox-img-2.png",
     },
     {
       title: "Event Tracking",
-      description: "Mark an event complete, incomplete, or to edit or delete event by swiping the event left or right.",
+      description: "Change event status by swiping the event left or right",
       image: "assets/images/slidebox-img-3.png",
     }
   ];
@@ -35,6 +35,10 @@ export class IntroPage {
 
   ionViewWillLeave() {
     this.tabBarElement.style.display = 'flex';
+  }
+
+  closeTutorial(){
+    this.navCtrl.pop();
   }
 
 }

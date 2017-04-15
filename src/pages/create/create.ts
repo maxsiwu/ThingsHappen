@@ -77,9 +77,9 @@ export class CreatePage {
         eventModel.title = this.title;
         eventModel.isAllDay = this.isAllDay;
         if(!this.isAllDay){
-        timeInput = this.date+'T'+this.time+":00";
+            timeInput = this.date+'T'+this.time+":00";
         }else{
-        timeInput = this.date+'T00:00:00';
+            timeInput = this.date+'T00:00:00';
         }
         eventModel.eventDateTime = new Date(timeInput + this.dateFormat.getOffset())
         eventModel.isrepeat = this.isrepeat;
@@ -93,7 +93,7 @@ export class CreatePage {
         }
         allevents.push(eventModel);
         this.storage.set('allevents',allevents).then(()=>{
-        this.goToHomePage();
+            this.goToHomePage();
         });
     });
   }

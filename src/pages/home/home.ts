@@ -1,3 +1,4 @@
+import { IntroPage } from './../intro/intro';
 import { Toasts } from './../../utility/toasts';
 import { ChangeColor } from './../../utility/colors';
 import { EditPage } from './../edit/edit';
@@ -50,6 +51,12 @@ export class HomePage {
 
 	ionViewWillEnter() {
 		this.displayData();
+		this.storage.get('firstTimeUser').then((data) => {
+			if (data == null){
+				this.navCtrl.push(IntroPage);
+				this.storage.set('firstTimeUser','true');
+			}
+		});
 	}
 
 	ionViewDidEnter() {

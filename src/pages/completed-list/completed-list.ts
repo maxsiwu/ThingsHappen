@@ -75,22 +75,24 @@ export class CompletedListPage {
 
   deleteEvent = (index): void => {
     this.storage.get('allevents').then((allevents) => {
-      this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-      this.storage.set('allevents', this._allevents)
-      allevents.splice(index, 1)
-      this._allevents = allevents
-      this.storage.set('allevents', this._allevents)
+      this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+      this.storage.set('allevents', this._allevents);
+      allevents.splice(index, 1);
+      this._allevents = allevents;
+      this.storage.set('allevents', this._allevents).then(()=>{
+        this.displayData();
+      });
     })
   }
 
   getTimeLeft = (eventTime): any => {
-    return this.dateFormat.getTimeLeft(eventTime)
+    return this.dateFormat.getTimeLeft(eventTime);
   }
 
   goToDetails = (index): void => {
     this.storage.get('allevents').then((allevents) => {
-      this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime")
-      this._oneEvent = this._allevents[index]
+      this._allevents = this.sortBy.sortByDate(allevents, "eventDateTime");
+      this._oneEvent = this._allevents[index];
       this.navCtrl.push(DetailPage, { event: this._oneEvent, index: index });
     })
   }

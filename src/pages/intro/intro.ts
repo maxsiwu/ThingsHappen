@@ -9,13 +9,13 @@ export class IntroPage {
   tabBarElement: any;
   slides = [
     {
-      title: "Welcome to Things Happen!",
-      description: "Things Happen is an app that not only keeps you informed about future events but also keeps track of the past ones demanding action.",
+      title: "Welcome!",
+      description: "Keep track of all events, future or past, starting with Things Happen.",
       image: "assets/images/slidebox-img-1.png",
     },
     {
-      title: "Event Handling",
-      description: "Simply click + to add new event, star an event by pressing onto the event",
+      title: "Add an Event",
+      description: "Simply click plus sign to add new event",
       image: "assets/images/slidebox-img-2.png",
     },
     {

@@ -10,21 +10,10 @@ import { Storage } from '@ionic/storage';
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { DateFormat } from './../../utility/date-format';
 
-// import {style, state, animate, transition, trigger} from '@angular/core';
-// import 'web-animations-js/web-animations.min';
-
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
 	providers: [SortPipe, DateFormat,Toasts]
-	// animations: [
-  //   trigger('popup', [
-	// 		state("onScreen", style({ width: "100%" })),
-	// 		state("offScreen", style({ width: "50%" })),
-	// 		transition("onScreen => offScreen", animate(500)),
-	// 		transition("offScreen => onScreen", animate(500)),
-  //   ])
-  // ]
 })
 
 export class HomePage {
@@ -35,8 +24,6 @@ export class HomePage {
   colorCode:string;
   currentLength:number;
   colorIndex:Array<number>;
-	//onScreen:Array<string>;
-  //pushMessage: string = "some message being pushed";
 	
 	constructor(public navCtrl: NavController,
               public storage: Storage,
@@ -62,26 +49,6 @@ export class HomePage {
 	ionViewDidEnter() {
 		this.displayData();
 	}
-
-	// ngAfterViewInit() {
-	// 	this.content.enableScrollListener();
-	// 	this.scrollerHandle = this.element.nativeElement.children[1].children[1];
-	// }
-
-	// scrollAnimation() {
-	// 	console.log(this.onScreen);
-	// 	var scrollTop = this.content.scrollTop.valueOf();
-	// 	var scrollBarBtm = scrollTop + window.innerHeight;
-	// 	for(var i = 0; i<this.currentLength;i++){
-	// 		var element = document.getElementById("event"+i.toString());
-	// 		if (element.getBoundingClientRect().bottom > scrollBarBtm 
-	// 		){
-	// 			this.onScreen[i] = 'offScreen';
-	// 		}else{
-	// 			this.onScreen[i] = 'onScreen';
-	// 		}
-	// 	}
-	// }
 
 	displayData() {
 		this.storage.get('allevents').then((allevents) => {
@@ -189,5 +156,33 @@ export class HomePage {
       this.storage.set('allevents',allevents);
     })
 	}
-
 }
+// functions needed for animation
+	// animations: [
+  //   trigger('popup', [
+	// 		state("onScreen", style({ width: "100%" })),
+	// 		state("offScreen", style({ width: "50%" })),
+	// 		transition("onScreen => offScreen", animate(500)),
+	// 		transition("offScreen => onScreen", animate(500)),
+  //   ])
+  // ]
+		//onScreen:Array<string>;
+			// ngAfterViewInit() {
+	// 	this.content.enableScrollListener();
+	// 	this.scrollerHandle = this.element.nativeElement.children[1].children[1];
+	// }
+
+	// scrollAnimation() {
+	// 	console.log(this.onScreen);
+	// 	var scrollTop = this.content.scrollTop.valueOf();
+	// 	var scrollBarBtm = scrollTop + window.innerHeight;
+	// 	for(var i = 0; i<this.currentLength;i++){
+	// 		var element = document.getElementById("event"+i.toString());
+	// 		if (element.getBoundingClientRect().bottom > scrollBarBtm 
+	// 		){
+	// 			this.onScreen[i] = 'offScreen';
+	// 		}else{
+	// 			this.onScreen[i] = 'onScreen';
+	// 		}
+	// 	}
+	// }

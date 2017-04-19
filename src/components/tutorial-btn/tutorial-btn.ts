@@ -11,7 +11,6 @@ import { NavController, NavParams } from 'ionic-angular';
 export class TutorialBtn{
       constructor(params: NavParams, public navCtrl:NavController) {}
     showTutorial(){
-        //console.log('clicking info icon');
         this.navCtrl.push(IntroPage)
     }
 }

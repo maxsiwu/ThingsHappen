@@ -1,9 +1,8 @@
 <ion-header class="opaque">
-  <ion-navbar color="header-color">
+  <ion-navbar color="header-color" no-border-bottom>
     <ion-title>
-      <i class="fa fa-thumb-tack"></i>
         Records
-      </ion-title>
+    </ion-title>
     <ion-buttons right>
       <tutorial-btn></tutorial-btn>
     </ion-buttons>
@@ -11,10 +10,10 @@
 </ion-header>
 
 <ion-content fullscreen class="record-content">
-  <ion-list>
+  <ion-list no-lines>
   <div *ngFor="let _event of _allevents; let i = index">
       <ion-item-sliding class="single-event" *ngIf="_event.isComplete == true" [ngStyle]="{'background-color': showBgColor(i)}">
-        <button ion-item (tap)="goToDetails(i)" (press)="toggleStatus(i)" [ngStyle]="{'background-color': showBgColor(i)}" detail-none no-lines>
+        <button ion-item (tap)="goToDetails(i)" (press)="toggleStatus(i)" [ngStyle]="{'background-color': showBgColor(i)}" detail-none>
           <h2>{{_event.title}}</h2>
           <span *ngIf="_event.isAllDay == true">
             <h5>{{_event.eventDateTime | date: 'MMMM dd, yyyy'}}</h5>
